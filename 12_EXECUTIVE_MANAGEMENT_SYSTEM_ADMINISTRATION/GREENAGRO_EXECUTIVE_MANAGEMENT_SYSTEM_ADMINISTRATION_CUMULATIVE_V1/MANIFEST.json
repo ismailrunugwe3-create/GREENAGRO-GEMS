@@ -1,0 +1,25 @@
+{
+  "module": "12 Executive Management & System Administration",
+  "version": "1.0",
+  "manual_forms": 5,
+  "derived_engines": 1,
+  "architecture": "Management review -> configuration/master governance -> workflow/approval/notification administration -> user administration -> governed reporting -> executive/system audit",
+  "sod": [
+    "management review preparer != approver",
+    "configuration requester != reviewer != approver",
+    "workflow policy preparer != approver",
+    "privileged user action requester != approver",
+    "report definition preparer != approver",
+    "Module 07 authorization remains separate from Module 12 application administration"
+  ],
+  "files": [
+    "06_Executive_Dashboard_System_Audit_Engine.html",
+    "04_User_Role_System_Administration.html",
+    "05_Reporting_Executive_Information_Governance.html",
+    "01_Executive_Management_Review.html",
+    "02_System_Configuration_Master_Data_Governance.html",
+    "ARCHITECTURE_VERIFICATION_REPORT.html",
+    "03_Workflow_Approval_Notification_Administration.html",
+    "INDEX.html"
+  ]
+}
