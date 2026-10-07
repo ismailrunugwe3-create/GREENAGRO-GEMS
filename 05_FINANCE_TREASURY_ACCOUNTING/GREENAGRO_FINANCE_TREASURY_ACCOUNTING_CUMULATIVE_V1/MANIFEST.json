@@ -1,0 +1,29 @@
+{
+  "module": "05 Finance, Treasury & Accounting",
+  "version": "1.0",
+  "company": "GREENAGRO FOOD EMPORIUM",
+  "manual_forms": 5,
+  "derived_engines": 1,
+  "architecture": "ENTER ONCE -> VALIDATE ONCE -> STORE ONCE -> USE EVERYWHERE -> REPORT MANY TIMES",
+  "flows": {
+    "procure_to_pay": "PO -> Receipt/Acceptance -> AP -> Treasury Payment",
+    "order_to_cash": "Sales Order -> Delivery/POD -> AR -> Treasury Receipt",
+    "direct_finance": "Approved OPEX/CAPEX/Journal -> Treasury where money moves"
+  },
+  "audit_controls": [
+    "source-reference required",
+    "verification/approval",
+    "segregation-of-duties exception flags",
+    "reversal reference",
+    "no manual duplicate cash/bank book"
+  ],
+  "files": [
+    "05_OPEX_CAPEX_Journal_Adjustment_Control.html",
+    "03_Customer_Invoice_Accounts_Receivable.html",
+    "06_Finance_Management_Reporting_Audit_Engine.html",
+    "01_Chart_of_Accounts_Financial_Masters.html",
+    "04_Treasury_Cash_Bank_Receipts_Payments.html",
+    "INDEX.html",
+    "02_Supplier_Invoice_Accounts_Payable.html"
+  ]
+}
