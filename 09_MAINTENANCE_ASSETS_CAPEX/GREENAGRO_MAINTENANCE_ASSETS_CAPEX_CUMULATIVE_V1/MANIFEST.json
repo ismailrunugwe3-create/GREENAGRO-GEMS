@@ -1,0 +1,29 @@
+{
+  "module": "09 Maintenance, Assets & CAPEX",
+  "version": "1.0",
+  "manual_forms": 5,
+  "derived_engines": 1,
+  "architecture": "CAPEX/PO/Receipt -> Asset Register -> Assignment/Location -> Inspection/PM -> Breakdown/Repair -> Finance/Depreciation Reference -> Transfer/Disposal -> Audit",
+  "authority": {
+    "Module09": "asset identity, custody/location, condition, maintenance lifecycle",
+    "Procurement": "PR/PO/supplier commitment",
+    "Inventory": "physical receipt and spare-parts issue",
+    "Finance": "payments, depreciation journals, impairment/revaluation, disposal accounting"
+  },
+  "sod": [
+    "preparer != asset event approver",
+    "repair technician != return-to-service verifier",
+    "finance bridge preparer != finance verifier",
+    "role-based access from Module 07 in final GEMS"
+  ],
+  "files": [
+    "02_Asset_Assignment_Transfer_Disposal.html",
+    "01_Asset_Register_CAPEX_Acquisition.html",
+    "03_Inspection_Preventive_Maintenance.html",
+    "04_Breakdown_Repair_Return_to_Service.html",
+    "06_Asset_Maintenance_Monitoring_Audit_Engine.html",
+    "ARCHITECTURE_VERIFICATION_REPORT.html",
+    "05_Depreciation_Finance_Reference.html",
+    "INDEX.html"
+  ]
+}
