@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GREENAGRO | Poultry Daily Flock Record — Design 0.1</title>
+<style>
+:root{--green:#164d35;--green2:#236749;--mint:#eaf3ed;--gold:#c29b4c;--ink:#1c2b23;--muted:#63736a;--line:#dce5de;--bg:#f4f7f4;--white:#fff;--red:#a9483a;--amber:#8b681d;--shadow:0 12px 35px #16352212}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px/1.45 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.top{background:linear-gradient(115deg,#123f2c,#246c4b);color:#fff;padding:22px max(20px,calc((100vw - 1220px)/2));border-bottom:4px solid var(--gold)}
+.toprow{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:12px}.mark{width:46px;height:46px;border:1px solid #ffffff66;border-radius:50%;display:grid;place-items:center;font-size:22px;background:#ffffff12}.brand small{display:block;color:#d2e6d9;letter-spacing:.11em;text-transform:uppercase;font-size:10px}.brand strong{font-size:17px}.version{font-size:12px;padding:7px 10px;border-radius:20px;background:#ffffff18}
+.wrap{max-width:1220px;margin:24px auto;padding:0 18px 48px}.intro{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}.intro h1{font-size:26px;margin:0 0 4px;color:var(--green)}.intro p{margin:0;color:var(--muted)}.callout{padding:10px 13px;background:#fff8e9;border:1px solid #ead7a6;border-radius:10px;font-size:12px;color:#715a25;max-width:390px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px}.panelhead{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px}.panelhead h2{font-size:17px;margin:0;color:var(--green)}.panelhead p{margin:3px 0 0;color:var(--muted);font-size:12px}.step{font-size:11px;color:#526d5c;background:var(--mint);padding:6px 9px;border-radius:20px;white-space:nowrap}.formbody{padding:20px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.field{display:flex;flex-direction:column;gap:5px}.field.w2{grid-column:span 2}.field.full{grid-column:1/-1}label{font-size:12px;font-weight:650;color:#405449}label i{font-style:normal;color:#9b4338}.field input,.field select,.field textarea{width:100%;border:1px solid #cdd9d0;border-radius:8px;background:#fff;padding:10px 11px;min-height:41px;color:var(--ink);outline:none}.field textarea{min-height:78px;resize:vertical}.readonly{background:#f3f6f4!important;color:#53665a!important}.hint{font-size:11px;color:#78877e}
+.section{margin:2px 0 22px}.sectiontitle{display:flex;align-items:center;gap:8px;padding-bottom:9px;border-bottom:1px solid var(--line);font-weight:700;color:var(--green);margin-bottom:13px}.n{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--mint);font-size:12px}.rule{background:#f5f8f5;border:1px solid var(--line);border-radius:9px;padding:12px 14px;font-size:12px;color:#4e6255}.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 20px;background:#f8faf8;border-top:1px solid var(--line)}.buttons{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid #cdd9d0;border-radius:8px;background:#fff;padding:9px 13px;color:#345341;font-weight:650}.btn.primary{background:var(--green);border-color:var(--green);color:#fff}.btn.gold{background:#fff7e4;border-color:#ead7a6;color:#715a25}
+.stats,.dash-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:16px 0}.stat,.metric{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}.stat span,.metric span{font-size:11px;color:var(--muted);display:block}.stat b,.metric b{font-size:21px;color:var(--green);display:block;margin-top:3px}.critical b{color:var(--red)}.warning b{color:var(--amber)}
+.tabs{display:flex;gap:8px;margin:20px 0 12px}.tab{background:#e5ece7;color:#375646;border:0;border-radius:9px;padding:10px 15px;font-weight:650}.tab.active{background:var(--green);color:#fff}.hidden{display:none!important}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:900px}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid #e8eee9;font-size:12px;vertical-align:top}th{background:#f2f7f3;color:#365441;position:sticky;top:0}.badge{display:inline-block;padding:4px 8px;border-radius:20px;background:#edf3ee;color:#376047;font-weight:650;font-size:10px}.badge.warning{background:#fff5dc;color:#7a6020}.badge.critical{background:#fbece9;color:#9a4133}.empty{padding:28px;text-align:center;color:var(--muted)}
+.listtools{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.listtools input,.listtools select{border:1px solid var(--line);border-radius:8px;padding:9px 11px}.dash-filters{align-items:end}.footer{font-size:11px;color:#78877f;display:flex;justify-content:space-between;gap:10px}.alertbox{border:1px solid #ead7a6;background:#fffaf0;border-radius:10px;padding:12px 14px;margin-top:12px;font-size:12px}.alertbox.critical{border-color:#e4b7b0;background:#fff5f3}.checkboxrow{display:flex;align-items:center;gap:8px;font-size:12px;color:#53665a}.checkboxrow input{width:auto;min-height:unset}
+.toast{position:fixed;bottom:22px;right:22px;background:#173f2c;color:#fff;padding:12px 17px;border-radius:9px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.25s;z-index:20}.toast.show{opacity:1;transform:none}
+.modal{position:fixed;inset:0;background:#0e2319a6;display:grid;place-items:center;padding:20px;z-index:10}.modalbox{background:#fff;border-radius:14px;max-width:800px;width:100%;max-height:90vh;overflow:auto;padding:22px}.modalbox pre{white-space:pre-wrap;font:13px/1.5 inherit}.close{float:right}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.stats,.dash-kpis{grid-template-columns:repeat(3,1fr)}.intro{align-items:start;flex-direction:column}}
+@media(max-width:560px){.top{padding:16px}.wrap{margin:16px auto;padding:0 12px 32px}.grid{grid-template-columns:1fr}.field.w2{grid-column:auto}.stats,.dash-kpis{grid-template-columns:repeat(2,1fr)}.actions{align-items:flex-start;flex-direction:column}.panelhead{padding:14px}.formbody{padding:14px}.footer{flex-direction:column}.version{font-size:10px}}
+</style></head>
+<body>
+<header class="top"><div class="toprow"><div class="brand"><div class="mark">🐔</div><div><small>GREENAGRO FOOD EMPORIUM</small><strong>Poultry Operations</strong></div></div><span class="version">STANDALONE REVIEW DESIGN · 0.1</span></div></header>
+<main class="wrap">
+<div class="intro"><div><h1>Poultry Daily Flock Record</h1><p>One operational record for flock population, movement, environment, observations and daily control.</p></div><div class="callout"><b>Architecture rule:</b> Feeding and Veterinary details are not re-entered here. This record captures flock operations and references those workflows when needed.</div></div>
+
+<section class="panel"><div class="panelhead"><div><h2>Flock operations dashboard</h2><p>Search daily flock activity and identify population or operational exceptions.</p></div><span class="step">POULTRY WORKSPACE</span></div>
+<div class="formbody"><div class="grid dash-filters">
+<div class="field"><label>Reporting period</label><select id="period"><option value="day">Today</option><option value="week">This week</option><option value="month" selected>This month</option><option value="quarter">This quarter</option><option value="half">Semi-annual</option><option value="year">Annual</option><option value="all">All records</option></select></div><div class="field period-history hidden"><label>Calendar period</label><select id="historyChoice"></select></div>
+<div class="field"><label>Farm / site</label><select id="dSite"><option value="">All sites</option><option>WIKICHI</option><option>ITURIKE</option><option>IGAWA</option></select></div>
+<div class="field"><label>Poultry project</label><select id="dProject"><option value="">All poultry projects</option><option>Layers</option><option>Broilers</option><option>Hybrid</option><option>Indigenous / Kienyeji</option><option>Sasso</option></select></div>
+<div class="field"><label>Exception level</label><select id="dSeverity"><option value="">All levels</option><option>Normal</option><option>Warning</option><option>Critical</option></select></div>
+<div class="field w2"><label>Search</label><input id="dSearch" placeholder="Flock ID, house, recorder, observation…"></div>
+</div>
+<div class="dash-kpis" id="kpis"></div><div class="tablewrap" id="dashTable"></div></div></section>
+
+<div class="stats"><div class="stat"><span>Records today</span><b id="sToday">0</b></div><div class="stat"><span>Birds closing today</span><b id="sBirds">0</b></div><div class="stat"><span>Mortality today</span><b id="sDeaths">0</b></div><div class="stat warning"><span>Warnings</span><b id="sWarn">0</b></div><div class="stat critical"><span>Critical</span><b id="sCrit">0</b></div></div>
+
+<div class="tabs"><button class="tab active" data-tab="entry">＋ New daily flock record</button><button class="tab" data-tab="register">▤ Saved records</button></div>
+
+<section class="panel" id="entryPanel"><div class="panelhead"><div><h2>Daily flock entry</h2><p>Capture only operational facts observed or completed during the shift/day.</p></div><span class="step">FORM · DAILY USE</span></div>
+<form id="form"><div class="formbody">
+
+<div class="section"><div class="sectiontitle"><span class="n">1</span>Flock identity & responsibility</div><div class="grid">
+<div class="field"><label>Record date <i>*</i></label><input name="date" id="date" type="date" required></div>
+<div class="field"><label>Shift / observation time</label><select name="shift"><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Whole day / closing</option></select></div>
+<div class="field"><label>Farm / site <i>*</i></label><select name="site" required><option value="">Select site</option><option>WIKICHI</option><option>ITURIKE</option><option>IGAWA</option></select></div>
+<div class="field"><label>House / unit <i>*</i></label><input name="house" placeholder="e.g., Layer House 1" required></div>
+<div class="field"><label>Poultry project <i>*</i></label><select name="project" required><option value="">Select</option><option>Layers</option><option>Broilers</option><option>Hybrid</option><option>Indigenous / Kienyeji</option><option>Sasso</option></select></div>
+<div class="field"><label>Flock / batch ID <i>*</i></label><input name="flock" placeholder="Batch reference" required></div>
+<div class="field"><label>Age</label><input name="age" placeholder="e.g., 24 weeks / 18 days"></div>
+<div class="field"><label>Recorded by <i>*</i></label><input name="recordBy" placeholder="Employee name / ID" required></div>
+</div></div>
+
+<div class="section"><div class="sectiontitle"><span class="n">2</span>Daily flock population reconciliation</div>
+<div class="rule" style="margin-bottom:12px"><b>Population equation:</b> Opening birds + Transfers in − Transfers out − Deaths − Culls = Expected closing birds. Enter the physical closing count; the system flags any unexplained variance.</div>
+<div class="grid">
+<div class="field"><label>Opening birds <i>*</i></label><input class="calc" name="opening" type="number" min="0" required></div>
+<div class="field"><label>Transfers in</label><input class="calc" name="transferIn" type="number" min="0" value="0"></div>
+<div class="field"><label>Transfers out</label><input class="calc" name="transferOut" type="number" min="0" value="0"></div>
+<div class="field"><label>Deaths</label><input class="calc" name="deaths" type="number" min="0" value="0"></div>
+<div class="field"><label>Culls</label><input class="calc" name="culls" type="number" min="0" value="0"></div>
+<div class="field"><label>Expected closing</label><input id="expected" class="readonly" readonly></div>
+<div class="field"><label>Physical closing count <i>*</i></label><input class="calc" name="closing" type="number" min="0" required></div>
+<div class="field"><label>Population variance</label><input id="variance" class="readonly" readonly></div>
+<div class="field w2"><label>Movement / mortality references</label><input name="movementRef" placeholder="Transfer ID, mortality reference, cull authorization…"></div>
+<div class="field w2"><label>Population variance explanation</label><input name="varianceNote" placeholder="Required when physical closing differs from expected"></div>
+</div></div>
+
+<div class="section"><div class="sectiontitle"><span class="n">3</span>Environment, water & flock observation</div><div class="grid">
+<div class="field"><label>Water availability</label><select name="water"><option>Available / normal</option><option>Reduced / intermittent</option><option>Unavailable</option><option>Not assessed</option></select></div>
+<div class="field"><label>Water system condition</label><select name="waterSystem"><option>Normal</option><option>Leak / wet litter risk</option><option>Blocked / poor flow</option><option>Repair required</option><option>Not assessed</option></select></div>
+<div class="field"><label>Ventilation / air quality</label><select name="ventilation"><option>Normal</option><option>Needs attention</option><option>Poor / abnormal</option><option>Not assessed</option></select></div>
+<div class="field"><label>Litter / floor condition</label><select name="litter"><option>Normal / dry</option><option>Partly wet</option><option>Wet / caked</option><option>Not applicable</option><option>Not assessed</option></select></div>
+<div class="field"><label>Temperature observation</label><select name="temperature"><option>Normal for flock</option><option>Heat stress concern</option><option>Cold stress concern</option><option>Not assessed</option></select></div>
+<div class="field"><label>Bird distribution / behaviour</label><select name="behaviour"><option>Normal</option><option>Uneven distribution</option><option>Huddling</option><option>Panting / heat signs</option><option>Reduced activity</option><option>Other abnormal behaviour</option></select></div>
+<div class="field"><label>General flock appearance</label><select name="appearance"><option>Normal</option><option>Abnormality observed</option><option>Veterinary assessment required</option></select></div>
+<div class="field"><label>Equipment condition</label><select name="equipment"><option>Operational</option><option>Minor issue</option><option>Failure affecting flock</option><option>Not assessed</option></select></div>
+<div class="field full"><label>Observation details</label><textarea name="observations" placeholder="Describe abnormal behaviour, environment, water, equipment or other operational findings. Do not duplicate clinical details recorded in Veterinary."></textarea></div>
+</div></div>
+
+<div class="section"><div class="sectiontitle"><span class="n">4</span>Operational action & linked workflows</div><div class="grid">
+<div class="field"><label>Veterinary follow-up required?</label><select name="vetRequired"><option>No</option><option>Yes — create / link Veterinary record</option><option>Already referred / recorded</option></select></div>
+<div class="field"><label>Veterinary record reference</label><input name="vetRef" placeholder="VET-… if available"></div>
+<div class="field"><label>Feeding exception observed?</label><select name="feedingIssue"><option>No</option><option>Yes — review Feeding record</option><option>Already documented in Feeding</option></select></div>
+<div class="field"><label>Feeding record reference</label><input name="feedingRef" placeholder="FEED-… if available"></div>
+<div class="field w2"><label>Immediate operational action</label><textarea name="action" placeholder="Action taken, repair, isolation/escalation instruction, management response…"></textarea></div>
+<div class="field"><label>Follow-up required?</label><select name="followRequired"><option>No</option><option>Yes</option></select></div>
+<div class="field"><label>Follow-up due date</label><input name="followDue" type="date"></div>
+<div class="field"><label>Follow-up owner</label><input name="followOwner" placeholder="Employee / role"></div>
+<div class="field"><label>Supervisor review</label><select name="reviewStatus"><option>Pending supervisor review</option><option>Reviewed / accepted</option><option>Returned for correction</option></select></div>
+<div class="field"><label>Supervisor / reviewer</label><input name="reviewer" placeholder="Name / ID"></div>
+<div class="field w2"><label>Review / corrective note</label><textarea name="reviewNote"></textarea></div>
+</div></div>
+
+<div id="liveAlert" class="alertbox"><b>Live control:</b> complete population and operational observations to see exception status.</div>
+<div class="rule" style="margin-top:12px"><b>Future GEMS integration:</b> site, house, flock, age and opening population should come from the active flock master. Mortality, Veterinary and Feeding should link by reference rather than being manually re-entered.</div>
+</div>
+<div class="actions"><span class="hint">Required fields are marked *. Records receive a unique reference and timestamp.</span><div class="buttons"><button type="reset" class="btn">Clear</button><button type="button" id="draft" class="btn gold">Save draft</button><button type="submit" class="btn primary">Save & submit for review</button></div></div>
+</form></section>
+
+<section class="panel hidden" id="registerPanel"><div class="panelhead"><div><h2>Saved flock records</h2><p>Search, inspect and export locally saved entries.</p></div><div class="listtools"><input id="search" placeholder="Search records…"><select id="rSeverity"><option value="">All severity</option><option>Normal</option><option>Warning</option><option>Critical</option></select><button class="btn" id="export">Export CSV</button></div></div><div class="tablewrap" id="register"></div></section>
+<div class="footer"><span>GREENAGRO Poultry Daily Flock Record · Design 0.1</span><span>Standalone review prototype · Not connected to GEMS</span></div>
+</main>
+<div class="toast" id="toast"></div><div class="modal hidden" id="modal"><div class="modalbox"><button class="btn close" id="close">Close</button><h2>Flock record detail</h2><div id="detail"></div></div></div>
+<script>
+const KEY='greenagro_poultry_daily_flock_01', form=document.querySelector('#form'), today=new Date().toISOString().slice(0,10); document.querySelector('#date').value=today;
+const num=n=>Number(form.elements[n]?.value||0), val=n=>(form.elements[n]?.value||'').trim(), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function rows(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return []}} function save(a){localStorage.setItem(KEY,JSON.stringify(a))}
+function toast(s){let t=document.querySelector('#toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function assess(){
+ let expected=num('opening')+num('transferIn')-num('transferOut')-num('deaths')-num('culls'), variance=num('closing')-expected;
+ document.querySelector('#expected').value=isFinite(expected)?expected:''; document.querySelector('#variance').value=isFinite(variance)?variance:'';
+ let reasons=[], critical=false;
+ if(variance!==0){reasons.push('Unexplained population variance: '+variance); critical=true}
+ if(num('deaths')>0) reasons.push('Mortality recorded: '+num('deaths'));
+ if(val('water')==='Unavailable'){reasons.push('Water unavailable');critical=true}
+ if(['Poor / abnormal'].includes(val('ventilation'))){reasons.push('Poor ventilation / air quality');critical=true}
+ if(['Wet / caked'].includes(val('litter'))) reasons.push('Wet / caked litter');
+ if(['Heat stress concern','Cold stress concern'].includes(val('temperature'))) reasons.push(val('temperature'));
+ if(val('appearance')==='Veterinary assessment required'){reasons.push('Veterinary assessment required');critical=true}
+ if(val('equipment')==='Failure affecting flock'){reasons.push('Equipment failure affecting flock');critical=true}
+ let severity=critical?'Critical':reasons.length?'Warning':'Normal', box=document.querySelector('#liveAlert');
+ box.className='alertbox '+(severity==='Critical'?'critical':''); box.innerHTML='<b>Live control — '+severity+':</b> '+(reasons.length?reasons.map(esc).join(' · '):'No exception detected from current entries.');
+ return {expected,variance,severity,reasons}
+}
+form.querySelectorAll('input,select,textarea').forEach(x=>x.addEventListener('input',assess)); form.querySelectorAll('select').forEach(x=>x.addEventListener('change',assess));
+function makeRecord(mode){
+ let d={}; form.querySelectorAll('[name]').forEach(f=>d[f.name]=f.value); let a=assess();
+ if(a.variance!==0&&!val('varianceNote')){toast('Explain the population variance before saving');return}
+ d.expectedClosing=a.expected;d.populationVariance=a.variance;d.severity=a.severity;d.exceptionReasons=a.reasons;d.status=mode==='draft'?'Draft':'Pending supervisor review';d.ref='FLOCK-'+new Date().toISOString().replace(/[-:TZ.]/g,'').slice(0,14)+'-'+Math.random().toString(36).slice(2,5).toUpperCase();d.createdAt=new Date().toISOString();
+ let all=rows();all.unshift(d);save(all);renderAll();toast(mode==='draft'?'Draft saved':'Flock record saved for review');form.reset();document.querySelector('#date').value=today;['transferIn','transferOut','deaths','culls'].forEach(n=>form.elements[n].value=0);assess();switchTab('register')
+}
+form.addEventListener('submit',e=>{e.preventDefault();if(form.reportValidity())makeRecord('submit')});document.querySelector('#draft').onclick=()=>{if(!val('date')||!val('site')||!val('house')||!val('project')||!val('flock')||!val('recordBy')){toast('Add date, site, house, project, flock and recorder');return}makeRecord('draft')};
+function periodStart(kind){let d=new Date(today+'T12:00:00');if(kind==='day')return today;if(kind==='week'){let x=new Date(d),day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);return x.toISOString().slice(0,10)}if(kind==='month')return today.slice(0,8)+'01';if(kind==='quarter'){let m=Math.floor(d.getMonth()/3)*3;return new Date(d.getFullYear(),m,1,12).toISOString().slice(0,10)}if(kind==='half')return new Date(d.getFullYear(),d.getMonth()<6?0:6,1,12).toISOString().slice(0,10);if(kind==='year')return d.getFullYear()+'-01-01';return '0000-01-01'}
+function filteredDash(){let p=document.querySelector('#period').value,[start,end]=gaPeriodRange('period'),site=document.querySelector('#dSite').value,proj=document.querySelector('#dProject').value,sev=document.querySelector('#dSeverity').value,q=document.querySelector('#dSearch').value.toLowerCase();return rows().filter(r=>(r.date>=start&&r.date<=end)&&(!site||r.site===site)&&(!proj||r.project===proj)&&(!sev||r.severity===sev)&&(!q||JSON.stringify(r).toLowerCase().includes(q)))}
+function dashboard(){let a=filteredDash(), deaths=a.reduce((s,r)=>s+Number(r.deaths||0),0),culls=a.reduce((s,r)=>s+Number(r.culls||0),0),variance=a.reduce((s,r)=>s+Math.abs(Number(r.populationVariance||0)),0),crit=a.filter(r=>r.severity==='Critical').length;
+ document.querySelector('#kpis').innerHTML=[['Matching records',a.length],['Mortality',deaths],['Culls',culls],['Unexplained variance',variance],['Critical records',crit]].map(x=>`<div class="metric"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
+ document.querySelector('#dashTable').innerHTML=a.length?'<table><thead><tr><th>Date / flock</th><th>Site / house</th><th>Opening → closing</th><th>Deaths / culls</th><th>Exception</th><th>Review</th></tr></thead><tbody>'+a.slice(0,50).map(r=>`<tr><td>${esc(r.date)}<br><b>${esc(r.flock)}</b></td><td>${esc(r.site)}<br>${esc(r.house)}</td><td>${esc(r.opening)} → ${esc(r.closing)}<br>Variance ${esc(r.populationVariance)}</td><td>${esc(r.deaths)} / ${esc(r.culls)}</td><td><span class="badge ${r.severity==='Critical'?'critical':r.severity==='Warning'?'warning':''}">${esc(r.severity)}</span><br>${esc((r.exceptionReasons||[]).join('; '))}</td><td>${esc(r.reviewStatus||r.status)}</td></tr>`).join('')+'</tbody></table>':'<div class="empty">No matching flock records.</div>'
+}
+['period','dSite','dProject','dSeverity'].forEach(id=>document.querySelector('#'+id).addEventListener('change',dashboard));document.querySelector('#dSearch').addEventListener('input',dashboard);
+function stats(){let a=rows(),t=a.filter(r=>r.date===today);document.querySelector('#sToday').textContent=t.length;document.querySelector('#sBirds').textContent=t.reduce((s,r)=>s+Number(r.closing||0),0);document.querySelector('#sDeaths').textContent=t.reduce((s,r)=>s+Number(r.deaths||0),0);document.querySelector('#sWarn').textContent=a.filter(r=>r.severity==='Warning').length;document.querySelector('#sCrit').textContent=a.filter(r=>r.severity==='Critical').length}
+function register(){let q=document.querySelector('#search').value.toLowerCase(),sev=document.querySelector('#rSeverity').value,a=rows().filter(r=>(!sev||r.severity===sev)&&(!q||JSON.stringify(r).toLowerCase().includes(q))),w=document.querySelector('#register');w.innerHTML=a.length?'<table><thead><tr><th>Reference / date</th><th>Flock</th><th>Population</th><th>Exception</th><th>Recorder</th><th>Status</th><th></th></tr></thead><tbody>'+a.map(r=>`<tr><td><b>${esc(r.ref)}</b><br>${esc(r.date)}</td><td>${esc(r.project)} · ${esc(r.flock)}<br>${esc(r.site)} / ${esc(r.house)}</td><td>${esc(r.opening)} → ${esc(r.closing)}<br>Var ${esc(r.populationVariance)}</td><td><span class="badge ${r.severity==='Critical'?'critical':r.severity==='Warning'?'warning':''}">${esc(r.severity)}</span></td><td>${esc(r.recordBy)}</td><td>${esc(r.status)}</td><td><button class="btn" onclick="openRec('${esc(r.ref)}')">Open</button></td></tr>`).join('')+'</tbody></table>':'<div class="empty">No saved records yet.</div>'}
+document.querySelector('#search').addEventListener('input',register);document.querySelector('#rSeverity').addEventListener('change',register);
+window.openRec=ref=>{let r=rows().find(x=>x.ref===ref);if(!r)return;document.querySelector('#detail').innerHTML='<pre>'+esc(Object.entries(r).map(([k,v])=>k+': '+(Array.isArray(v)?v.join('; '):v||'—')).join('\n'))+'</pre>';document.querySelector('#modal').classList.remove('hidden')};document.querySelector('#close').onclick=()=>document.querySelector('#modal').classList.add('hidden');document.querySelector('#modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.add('hidden')};
+function renderAll(){stats();dashboard();register()}function switchTab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));document.querySelector('#entryPanel').classList.toggle('hidden',t!=='entry');document.querySelector('#registerPanel').classList.toggle('hidden',t!=='register');if(t==='register')register()}document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+document.querySelector('#export').onclick=()=>{let a=rows();if(!a.length){toast('No records to export');return}let keys=[...new Set(a.flatMap(Object.keys))],csv=[keys.join(','),...a.map(r=>keys.map(k=>'"'+String(Array.isArray(r[k])?r[k].join('; '):(r[k]??'')).replaceAll('"','""')+'"').join(','))].join('\r\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(blob),x=document.createElement('a');x.href=u;x.download='GREENAGRO_Poultry_Daily_Flock_Records.csv';x.click();URL.revokeObjectURL(u)};
+assess();renderAll();
+
+// GREENAGRO shared historical calendar reporting standard v1.0
+function gaISO(d){return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10)}
+function gaYearBounds(){let ys=[new Date().getFullYear()];try{(typeof rows==='function'?rows():(typeof getRows==='function'?getRows():[])).forEach(r=>{let y=parseInt(String(r.date||'').slice(0,4));if(y)ys.push(y)})}catch(e){};return [Math.min(...ys),Math.max(...ys,new Date().getFullYear())]}
+function gaFillHistory(periodId){let p=document.getElementById(periodId),h=document.getElementById('historyChoice');if(!p||!h)return;let mode=p.value,[lo,hi]=gaYearBounds(),now=new Date(),cy=now.getFullYear(),cm=now.getMonth(),opts=[];
+ if(mode==='month'){for(let y=hi;y>=lo;y--)for(let m=11;m>=0;m--)if(y<cy||(y===cy&&m<=cm))opts.push([`${y}-${String(m+1).padStart(2,'0')}`,new Date(y,m,1).toLocaleString('en',{month:'long'})+' '+y])}
+ else if(mode==='quarter'){for(let y=hi;y>=lo;y--)for(let q=4;q>=1;q--)if(y<cy||(y===cy&&(q-1)*3<=cm))opts.push([`${y}-Q${q}`,`Q${q} ${y} · ${['Jan–Mar','Apr–Jun','Jul–Sep','Oct–Dec'][q-1]}`])}
+ else if(mode==='half'){for(let y=hi;y>=lo;y--)for(let h2=2;h2>=1;h2--)if(y<cy||(y===cy&&(h2-1)*6<=cm))opts.push([`${y}-H${h2}`,`${h2===1?'Jan–Jun':'Jul–Dec'} ${y}`])}
+ else if(mode==='year'){for(let y=hi;y>=lo;y--)opts.push([String(y),String(y)])}
+ h.innerHTML=opts.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('');let current=mode==='month'?`${cy}-${String(cm+1).padStart(2,'0')}`:mode==='quarter'?`${cy}-Q${Math.floor(cm/3)+1}`:mode==='half'?`${cy}-H${cm<6?1:2}`:String(cy);if([...h.options].some(o=>o.value===current))h.value=current;document.querySelectorAll('.period-history').forEach(x=>x.classList.toggle('hidden',!['month','quarter','half','year'].includes(mode)))}
+function gaPeriodRange(periodId){let p=document.getElementById(periodId),mode=p?p.value:'month',h=document.getElementById('historyChoice'),now=new Date(),s=new Date(now),e=new Date(now);if(mode==='day'){s=e=new Date(now.getFullYear(),now.getMonth(),now.getDate())}else if(mode==='week'){let d=(now.getDay()+6)%7;s=new Date(now.getFullYear(),now.getMonth(),now.getDate()-d);e=new Date(s);e.setDate(s.getDate()+6)}else if(mode==='month'){let [y,m]=(h.value||`${now.getFullYear()}-${now.getMonth()+1}`).split('-').map(Number);s=new Date(y,m-1,1);e=new Date(y,m,0)}else if(mode==='quarter'){let z=(h.value||`${now.getFullYear()}-Q${Math.floor(now.getMonth()/3)+1}`).match(/(\d+)-Q(\d)/),y=+z[1],q=+z[2];s=new Date(y,(q-1)*3,1);e=new Date(y,q*3,0)}else if(mode==='half'){let z=(h.value||`${now.getFullYear()}-H${now.getMonth()<6?1:2}`).match(/(\d+)-H(\d)/),y=+z[1],hh=+z[2],m=(hh-1)*6;s=new Date(y,m,1);e=new Date(y,m+6,0)}else if(mode==='year'){let y=+(h.value||now.getFullYear());s=new Date(y,0,1);e=new Date(y,11,31)}else if(mode==='all'){return ['0000-01-01','9999-12-31']}else if(mode==='custom'){let f=document.getElementById('from')||document.getElementById('rangeFrom'),t=document.getElementById('to')||document.getElementById('rangeTo');return [f&&f.value?f.value:gaISO(now),t&&t.value?t.value:gaISO(now)]}return [gaISO(s),gaISO(e)]}
+function gaInitPeriod(periodId,refresh){let p=document.getElementById(periodId),h=document.getElementById('historyChoice');if(!p||!h)return;gaFillHistory(periodId);p.addEventListener('change',()=>{gaFillHistory(periodId);refresh&&refresh()});h.addEventListener('change',()=>refresh&&refresh())}
+
+gaInitPeriod('period',()=>{renderDash();});
+</script></body></html>

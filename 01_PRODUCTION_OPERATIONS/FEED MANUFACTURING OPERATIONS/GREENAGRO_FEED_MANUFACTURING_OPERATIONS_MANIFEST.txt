@@ -1,0 +1,35 @@
+GREENAGRO FOOD EMPORIUM
+FEED MANUFACTURING OPERATIONS — MANIFEST V1.0
+Date: 03 October 2026
+System: GREENAGRO ENTERPRISE MANAGEMENT SYSTEM (GEMS)
+
+COMPLETED FORMS
+1. Feed Manufacturing Batch Record
+2. Feed Raw Material Consumption Record
+3. Feed Quality Control & Batch Release Record
+4. Finished Feed Output & Inventory Handoff Record
+
+SHARED PRODUCTION-READY CONTROLS
+- Dynamic calendar: Today; current calendar week; selectable historical Month;
+  Quarter Q1/Q2/Q3/Q4; Semi-annual H1/H2; Annual; All.
+- Calendar years expand from recorded data/current year and remain usable as years change.
+- Exact resolved date ranges for historical reporting.
+- Saved register and search/filter controls.
+- CSV export.
+- Live validation, warning/critical exception controls and mass-balance reconciliation.
+- Supervisor review, reviewer/date, corrective action and follow-up.
+- Audit reference and created timestamp.
+- Responsive mobile layout.
+
+DATA OWNERSHIP / NO DOUBLE REPORTING
+- Manufacturing Batch owns the manufacturing event and production mass balance.
+- Raw Material Consumption owns actual material use against the batch; Inventory Issue
+  remains the authoritative stock movement and Purchases remains the procurement/cost source.
+- Quality Control owns QA findings and batch release/hold/rejection.
+- Finished Feed Output owns packaging/output reconciliation and inventory handoff;
+  Inventory owns stock-in and Sales owns customer/revenue transactions.
+- No duplicate manual Purchase/OPEX/CAPEX/Sales financial entry is introduced.
+
+INTEGRATION FLOW
+Inventory Issue -> Material Consumption -> Manufacturing Batch -> Quality Control/Release
+-> Finished Feed Output -> Inventory Stock-in -> Sales/Feeding workflows.

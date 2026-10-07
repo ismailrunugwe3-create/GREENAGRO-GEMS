@@ -1,0 +1,25 @@
+GREENAGRO FOOD EMPORIUM
+GENERAL FARM OPERATIONS — MANIFEST V1.0
+Date: 03 October 2026
+
+COMPLETED FORMS
+1. Farm Daily Operations & Shift Record
+2. Equipment Machinery Inspection & Maintenance Record
+3. Utilities & Infrastructure Operations Record
+4. Farm Task Assignment & Completion Record
+
+COMMON CONTROLS
+Dynamic calendar and historical period reporting; saved register; CSV export; live
+validation; warning/critical exceptions; supervisor review/follow-up; audit reference
+and timestamp; mobile-responsive layout.
+
+NO DOUBLE REPORTING
+General Farm Operations records cross-project operational events only. Poultry, Goat,
+Crop and Feed Manufacturing detail remains in those project forms. Veterinary and
+Biosecurity events remain in their dedicated workflows. Inventory movements and
+Purchases/OPEX/CAPEX/Sales remain authoritative transaction sources and are referenced
+where necessary.
+
+LINKAGE
+Task Assignment -> project work / Daily Shift -> exceptions -> Maintenance, Utilities,
+Veterinary or Biosecurity as applicable -> Supervisor Review.

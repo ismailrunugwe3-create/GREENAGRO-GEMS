@@ -1,0 +1,25 @@
+GREENAGRO FOOD EMPORIUM
+POULTRY OPERATIONS FORMS — CUMULATIVE MANIFEST V3.0
+Updated: 03 October 2026
+
+SYSTEM-WIDE REPORTING STANDARD
+All six Poultry Operations forms now use dynamic calendar reporting.
+- Today: current calendar date.
+- This week: current Monday–Sunday calendar week.
+- Month: selectable month and year, including prior recorded years.
+- Quarter: selectable Q1 Jan–Mar, Q2 Apr–Jun, Q3 Jul–Sep, Q4 Oct–Dec and year.
+- Semi-annual: selectable Jan–Jun or Jul–Dec and year.
+- Annual: selectable current or prior recorded year.
+- Calendar years update automatically from the current system year and years represented in saved records.
+- Historical period filtering uses both exact start and end dates; records outside the selected period are excluded.
+
+COMPLETED FORMS
+1. GREENAGRO_VETERINARY_DAILY_RECORD_DESIGN_0_4.html — Veterinary & Animal Health
+2. GREENAGRO_FEEDING_DAILY_RECORD_FINAL_1_0.html — Feeding Operations
+3. GREENAGRO_POULTRY_DAILY_FLOCK_RECORD_DESIGN_0_1.html — Daily Flock Operations
+4. GREENAGRO_POULTRY_PRODUCTION_EGG_RECORD_FINAL_1_0.html — Production & Egg Control
+5. GREENAGRO_FLOCK_MOVEMENT_POPULATION_CONTROL_FINAL_1_0.html — Movement & Population Control
+6. GREENAGRO_BIOSECURITY_FARM_INSPECTION_FINAL_1_0.html — Biosecurity & Farm Inspection
+
+ARCHITECTURE
+ENTER ONCE -> LINK / PROCESS -> DASHBOARD / REPORT. Movement data is referenced by Daily Flock; inspection abnormalities link to Daily Flock; clinical/disease concerns link to Veterinary. Feeding and egg production retain their own process ownership.

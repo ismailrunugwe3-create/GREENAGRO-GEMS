@@ -1,0 +1,7 @@
+GREENAGRO FOOD EMPORIUM
+CROP OPERATIONS FORMS — MANIFEST V1.0
+
+Completed: Crop Daily Activity; Crop Input Application & Usage; Crop Harvest & Post-Harvest; Crop Field & Season Performance.
+
+Shared standard: dynamic historical calendar, exact period ranges, saved register, CSV export, validation, supervisor review, mobile responsiveness.
+Data ownership: no duplicate Purchases/OPEX/CAPEX, Inventory or Sales financial transactions.

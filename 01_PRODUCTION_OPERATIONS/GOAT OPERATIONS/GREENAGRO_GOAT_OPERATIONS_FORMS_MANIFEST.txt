@@ -1,0 +1,31 @@
+GREENAGRO FOOD EMPORIUM
+GOAT OPERATIONS FORMS — MANIFEST V1.0
+Date: 03 October 2026
+
+Architecture:
+ENTER ONCE -> LINK / PROCESS -> DASHBOARD / REPORT
+
+Completed forms:
+1. Goat Daily Herd Record — daily population reconciliation, welfare and observations.
+2. Goat Breeding & Reproduction Record — mating/service, pregnancy, kidding, weaning and reproductive follow-up.
+3. Goat Growth & Performance Record — weight, weight gain, ADG, body condition and performance follow-up.
+4. Goat Movement & Population Control — authoritative goat movement/population-changing transactions.
+
+Shared production standard:
+- Dynamic calendar with current/historical Month, Quarter, Semi-annual and Annual reporting.
+- Calendar years automatically expand from current year and saved records.
+- Exact start/end date filtering.
+- Saved local register and record detail.
+- CSV export.
+- Validation and Normal/Warning/Critical controls.
+- Supervisor review and audit timestamps.
+- Mobile-responsive interface.
+
+No-double-reporting rules:
+- Goat Movement owns physical movement transactions; Daily Herd consumes approved movement references.
+- Veterinary owns diagnosis/treatment/animal-health investigation.
+- Feeding workflow owns detailed feed use/reconciliation.
+- Daily Herd owns daily population/welfare observations.
+- Breeding owns reproductive events/outcomes.
+- Growth owns weight/performance measurements.
+- Purchases, Sales, Inventory and financial transactions remain in their authoritative GEMS workflows.
