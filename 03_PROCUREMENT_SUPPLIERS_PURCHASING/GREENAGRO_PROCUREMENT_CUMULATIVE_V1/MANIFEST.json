@@ -1,0 +1,20 @@
+{
+  "module": "03 Procurement, Suppliers & Purchasing",
+  "version": "1.0",
+  "company": "GREENAGRO FOOD EMPORIUM",
+  "architecture": "ENTER ONCE -> VALIDATE ONCE -> STORE ONCE -> USE EVERYWHERE -> REPORT MANY TIMES",
+  "workflow": "PR -> RFQ/Decision -> PO -> Inventory Stock Receipt -> Finance Payment; Supplier Performance monitors linked outcomes",
+  "manual_forms": 4,
+  "derived_engines": 1,
+  "files": [
+    "01_Purchase_Requisition_Approval.html",
+    "02_Supplier_RFQ_Quotation_Comparison_Decision.html",
+    "03_Purchase_Order_Supplier_Commitment.html",
+    "04_Supplier_Master_Performance_Monitoring.html",
+    "05_Procurement_Monitoring_Engine_Dashboard.html"
+  ],
+  "boundaries": {
+    "physical_receipt": "Stock & Inventory",
+    "supplier_payment": "Finance"
+  }
+}
