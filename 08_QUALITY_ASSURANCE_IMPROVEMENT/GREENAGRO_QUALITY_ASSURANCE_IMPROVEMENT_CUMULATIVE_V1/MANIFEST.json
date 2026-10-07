@@ -1,0 +1,24 @@
+{
+  "module": "08 Quality Assurance & Improvement",
+  "version": "1.0",
+  "manual_forms": 4,
+  "derived_engines": 1,
+  "architecture": "Standard -> Inspection -> NCR/CAPA -> Effectiveness -> Supplier/Product/Process Quality -> Improvement/Audit",
+  "authority": "QA owns standards, independent quality verification, NCR/CAPA and effectiveness; source modules retain transaction authority.",
+  "sod_controls": [
+    "inspector vs independent reviewer",
+    "CAPA owner vs effectiveness verifier",
+    "approval required for active standards",
+    "major/critical finding requires NCR",
+    "role-based access inherited from Module 07 in final GEMS"
+  ],
+  "files": [
+    "03_Nonconformity_CAPA_Improvement.html",
+    "02_Product_Process_Quality_Inspections.html",
+    "04_Supplier_Quality_Control.html",
+    "05_QA_Improvement_Monitoring_Audit_Engine.html",
+    "ARCHITECTURE_VERIFICATION_REPORT.html",
+    "01_Specifications_Standards_Control.html",
+    "INDEX.html"
+  ]
+}
