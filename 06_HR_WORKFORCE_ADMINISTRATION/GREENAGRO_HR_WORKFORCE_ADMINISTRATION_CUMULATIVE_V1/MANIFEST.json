@@ -1,0 +1,30 @@
+{
+  "module": "06 HR, Workforce & Administration",
+  "version": "1.0",
+  "official_departments": [
+    "Executive Department",
+    "HR & Administration",
+    "Production and Operations",
+    "Procurement, Store, Depots, Logistics & Distribution",
+    "Finance",
+    "Sales, Marketing and Customer Services",
+    "Quality Assurance & Improvement"
+  ],
+  "manual_forms": 5,
+  "derived_engines": 1,
+  "architecture": "Employee Master -> Assignment/Contract -> Attendance/Leave -> Payroll Input Reference -> Lifecycle -> Module 07 Access Handoff",
+  "authority": {
+    "HR": "employee, contract, assignment, attendance, leave, lifecycle, HR payroll inputs",
+    "Finance": "actual payroll accounting/payment",
+    "Module 07": "user accounts, duties, permissions and access"
+  },
+  "files": [
+    "02_Contract_Position_Workforce_Assignment.html",
+    "04_Onboarding_Offboarding_Employee_Lifecycle.html",
+    "05_Payroll_Input_Finance_Reference.html",
+    "03_Attendance_Leave_Workforce_Time.html",
+    "06_HR_Workforce_Monitoring_Audit_Engine.html",
+    "01_Employee_Master_Employment_Profile.html",
+    "INDEX.html"
+  ]
+}
