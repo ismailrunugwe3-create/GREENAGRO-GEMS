@@ -1,0 +1,22 @@
+{
+  "module": "04 Sales, Customers, Depots & Distribution",
+  "version": "1.0",
+  "company": "GREENAGRO FOOD EMPORIUM",
+  "architecture": "ENTER ONCE -> VALIDATE ONCE -> STORE ONCE -> USE EVERYWHERE -> REPORT MANY TIMES",
+  "manual_forms": 4,
+  "derived_engines": 1,
+  "workflow": "Customer -> Sales Order -> Depot Allocation -> Inventory Issue -> Dispatch/Delivery -> Finance Invoice Reference -> Return/Credit Request",
+  "files": [
+    "05_Sales_Depot_Distribution_Monitoring_Engine.html",
+    "04_Customer_Return_Complaint_Credit_Request.html",
+    "02_Sales_Order_Pricing_Approval.html",
+    "01_Customer_Master_Commercial_Profile.html",
+    "03_Depot_Allocation_Dispatch_Delivery.html",
+    "INDEX.html"
+  ],
+  "authority_boundaries": {
+    "sales": "Customer demand, price, order and fulfilment",
+    "inventory": "Physical stock issue/return and balances",
+    "finance": "Invoice, receivable, credit note/refund and payment"
+  }
+}
