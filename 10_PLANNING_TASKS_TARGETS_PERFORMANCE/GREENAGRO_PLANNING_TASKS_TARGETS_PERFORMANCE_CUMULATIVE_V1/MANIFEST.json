@@ -1,0 +1,23 @@
+{
+  "module": "10 Planning, Tasks, Targets & Performance",
+  "version": "1.0",
+  "manual_forms": 4,
+  "derived_engines": 1,
+  "architecture": "Company/Department/Project Plan -> Objectives/KPIs -> Activities/Tasks -> Progress/Evidence -> Performance Measurement -> Variance/Corrective Action -> Monitoring/Audit",
+  "authority": "Module 10 owns plans, targets, task assignments and performance review; source modules own operational actuals.",
+  "sod": [
+    "plan owner != plan approver",
+    "task owner != completion reviewer",
+    "performance preparer != independent reviewer",
+    "role/project/site/action permissions from Module 07"
+  ],
+  "files": [
+    "03_Activities_Tasks_Execution.html",
+    "02_Objectives_KPIs_Targets.html",
+    "04_Performance_Measurement_Variance_Corrective_Action.html",
+    "ARCHITECTURE_VERIFICATION_REPORT.html",
+    "05_Planning_Performance_Monitoring_Audit_Engine.html",
+    "INDEX.html",
+    "01_Company_Department_Project_Plans.html"
+  ]
+}
