@@ -1,0 +1,116 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GREENAGRO Stock Adjustment, Damage, Loss & Disposal V1.0</title>
+<style>
+:root{--g:#075b43;--g2:#0b7a59;--gold:#c89b2b;--bg:#f3f7f5;--line:#d8e2dd;--bad:#b42318;--warn:#9a6700}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:#14221d;font-size:15px}
+header{background:linear-gradient(120deg,var(--g),#103d31);color:#fff;padding:24px}.wrap{max-width:1280px;margin:auto}.tag{color:#f2d47b;font-weight:700;letter-spacing:.08em}h1{margin:5px 0;font-size:27px}
+main{max-width:1280px;margin:20px auto;padding:0 14px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 4px 18px #0000000b}
+h2,h3{color:var(--g);margin-top:0}.note{background:#eef8f4;border-left:5px solid var(--g2);padding:13px;border-radius:10px;margin-bottom:16px}.warn{background:#fff7e6;border-left-color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.fg{display:flex;flex-direction:column;gap:6px}.wide{grid-column:span 2}
+label{font-weight:700;font-size:13px}input,select,textarea{width:100%;padding:11px;border:1px solid #bfcfc7;border-radius:9px;background:#fff;font:inherit}input[readonly],textarea[readonly]{background:#f0f3f2}
+.actions,.controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.controls{margin:0 0 12px}.controls input,.controls select{max-width:280px}
+button{padding:11px 16px;border-radius:10px;font-weight:700;cursor:pointer}.primary{border:0;background:var(--g);color:#fff}.secondary{background:#fff;border:1px solid var(--g);color:var(--g)}.danger{background:#fff;border:1px solid var(--bad);color:var(--bad)}
+.msg{font-weight:700;margin-top:12px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);border-radius:14px;padding:14px}.kpi b{display:block;font-size:23px;color:var(--g)}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:1320px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}th{background:#eef4f1;color:var(--g)}
+.badge{padding:4px 8px;border-radius:999px;background:#e8f5ef;font-weight:700}.audit{font-family:monospace;white-space:pre-wrap;background:#f6f8f7;border:1px solid var(--line);padding:12px;border-radius:10px;max-height:220px;overflow:auto}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.grid{grid-template-columns:1fr}.wide{grid-column:span 1}}
+</style></head><body>
+<header><div class="wrap"><div class="tag">GREENAGRO FOOD EMPORIUM · STOCK & INVENTORY CONTROL</div><h1>Stock Adjustment, Damage, Loss & Disposal Record</h1><div>Form 6 · Controlled Exception Workflow V1.0 · No Direct Balance Editing</div></div></header>
+<main>
+<section class="card">
+<div class="note warn"><b>Control principle:</b> This form never edits a stock balance directly. It creates a controlled exception transaction. Only an <b>APPROVED</b> record is eligible to post to the future Stock Ledger. Evidence and reason codes are mandatory for submitted exceptions.</div>
+<div class="kpis"><div class="kpi">Cases<b id="kAll">0</b></div><div class="kpi">Pending Approval<b id="kPend">0</b></div><div class="kpi">Approved<b id="kApp">0</b></div><div class="kpi">Net Qty Impact<b id="kImpact">0</b></div></div>
+</section>
+
+<section class="card"><h2>Exception / Adjustment Case</h2><div class="grid">
+<div class="fg"><label>Case Reference</label><input id="ref" readonly></div>
+<div class="fg"><label>Event Date *</label><input id="date" type="date"></div>
+<div class="fg"><label>Case Type *</label><select id="caseType" onchange="caseChanged()"><option value="">Select</option><option>POSITIVE STOCK ADJUSTMENT</option><option>NEGATIVE STOCK ADJUSTMENT</option><option>DAMAGE / SPOILAGE</option><option>LOSS / MISSING STOCK</option><option>EXPIRY</option><option>PHYSICAL DISPOSAL</option></select></div>
+<div class="fg"><label>Ledger Direction</label><input id="direction" readonly></div>
+
+<div class="fg"><label>Reason Code *</label><select id="reasonCode" onchange="reasonChanged()"><option value="">Select</option><option>COUNT_VARIANCE_PLUS</option><option>COUNT_VARIANCE_MINUS</option><option>RECEIPT_CORRECTION</option><option>ISSUE_CORRECTION</option><option>DAMAGED_IN_STORAGE</option><option>DAMAGED_IN_HANDLING</option><option>SPOILAGE / QUALITY_FAILURE</option><option>EXPIRED_STOCK</option><option>THEFT / SUSPECTED_THEFT</option><option>UNEXPLAINED_LOSS</option><option>APPROVED_DISPOSAL</option><option>OTHER_APPROVED_REASON</option></select></div>
+<div class="fg"><label>Item ID *</label><input id="itemId" placeholder="GFE-ITM-00001"></div>
+<div class="fg"><label>Item Name *</label><input id="itemName" placeholder="Item Master lookup in integrated App"></div>
+<div class="fg"><label>Base UOM *</label><select id="uom"><option value="">Select</option><option>kg</option><option>g</option><option>litre</option><option>ml</option><option>piece</option><option>bag</option><option>tray</option><option>crate</option><option>dose</option><option>bottle</option><option>pack</option><option>tonne</option></select></div>
+
+<div class="fg"><label>Stock Location *</label><select id="location"><option value="">Select</option><option>WIKICHI</option><option>ITURIKE</option><option>IGAWA</option><option>NJOMBE GREENAGRI DEPOT</option><option>IGAWA GREENAGRO DEPOT</option></select></div>
+<div class="fg"><label>Batch / Lot</label><input id="batch"></div>
+<div class="fg"><label>System Quantity Before <small>(ledger auto)</small></label><input id="systemQty" type="number" min="0" step=".01" placeholder="Auto in integrated App"></div>
+<div class="fg"><label>Adjustment / Affected Quantity *</label><input id="qty" type="number" min="0" step=".01" oninput="calcAfter()"></div>
+
+<div class="fg"><label>Projected Quantity After</label><input id="afterQty" readonly></div>
+<div class="fg"><label>Related Transaction Ref</label><input id="relatedRef" placeholder="Count / receipt / issue / return / transfer ref"></div>
+<div class="fg"><label>Evidence Type *</label><select id="evidenceType"><option value="">Select</option><option>Physical Stock Count Sheet</option><option>Photo / Video Evidence</option><option>Damage / Incident Report</option><option>Expiry / Batch Inspection</option><option>Supplier / Delivery Document</option><option>Security / Loss Report</option><option>Disposal Certificate / Witness Record</option><option>Other Controlled Evidence</option></select></div>
+<div class="fg"><label>Evidence Reference *</label><input id="evidenceRef" placeholder="Document/file/photo/report reference"></div>
+
+<div class="fg"><label>Reported By *</label><input id="reportedBy"></div>
+<div class="fg"><label>Independent Verifier *</label><input id="verifiedBy"></div>
+<div class="fg"><label>Approval Status *</label><select id="approval"><option>DRAFT</option><option>PENDING APPROVAL</option><option>APPROVED</option><option>REJECTED</option></select></div>
+<div class="fg"><label>Approved / Rejected By</label><input id="approver"></div>
+
+<div class="fg"><label>Disposal Method</label><select id="disposalMethod"><option value="">Not Applicable</option><option>Controlled destruction</option><option>Approved waste disposal</option><option>Return to licensed / approved handler</option><option>Other approved method</option></select></div>
+<div class="fg"><label>Disposal Date</label><input id="disposalDate" type="date"></div>
+<div class="fg"><label>Disposal Witness</label><input id="witness"></div>
+<div class="fg"><label>Disposal Evidence Ref</label><input id="disposalEvidence"></div>
+
+<div class="fg wide"><label>Detailed Reason / Investigation *</label><textarea id="reason" rows="4"></textarea></div>
+<div class="fg wide"><label>Corrective / Preventive Action</label><textarea id="capa" rows="4"></textarea></div>
+</div>
+<div id="hint" class="note" style="margin-top:15px">Select Case Type. Posting direction and additional controls will be determined automatically.</div>
+<div class="actions"><button class="secondary" onclick="save('DRAFT')">Save Draft</button><button class="primary" onclick="save('SUBMITTED')">Submit / Save Decision</button><button class="secondary" onclick="clearForm()">Clear</button></div><div id="msg" class="msg"></div>
+</section>
+
+<section class="card"><h2>Adjustment / Exception Register</h2>
+<div class="controls"><input id="search" placeholder="Search case / item / evidence" oninput="render()"><select id="filter" onchange="render()"><option value="">All Approval Status</option><option>DRAFT</option><option>PENDING APPROVAL</option><option>APPROVED</option><option>REJECTED</option></select><button class="secondary" onclick="exportCSV()">Export CSV</button></div>
+<div class="tablewrap"><table><thead><tr><th>Case</th><th>Date</th><th>Type</th><th>Reason Code</th><th>Direction</th><th>Item</th><th>Location</th><th>Batch</th><th>Qty</th><th>Evidence</th><th>Verifier</th><th>Approval</th><th>Ledger</th><th>Open</th></tr></thead><tbody id="rows"></tbody></table></div>
+</section>
+
+<section class="card"><h2>Audit Trail</h2><div class="note">Audit entries are appended rather than overwritten. In the final integrated GEMS, user identity will come from the access/session layer rather than free-text names.</div><div id="audit" class="audit">No audit events yet.</div></section>
+</main>
+
+<script>
+const KEY='greenagro_stock_adjustments_v1', AUD='greenagro_stock_adjustments_audit_v1';
+const $=x=>document.getElementById(x),load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}},store=a=>localStorage.setItem(KEY,JSON.stringify(a));
+const loadAudit=()=>{try{return JSON.parse(localStorage.getItem(AUD)||'[]')}catch(e){return[]}},storeAudit=a=>localStorage.setItem(AUD,JSON.stringify(a));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function today(){return new Date().toISOString().slice(0,10)}
+function nextRef(){let a=load(),n=a.reduce((m,x)=>Math.max(m,Number((x.ref||'').split('-').pop())||0),0)+1;return 'ADJ-'+String(n).padStart(6,'0')}
+function directionFor(t){return t==='POSITIVE STOCK ADJUSTMENT'?'IN':t?'OUT':''}
+function caseChanged(){let t=$('caseType').value,d=directionFor(t);$('direction').value=d;let text=d==='IN'?'Positive correction: evidence and a reconciliation/source reference are required.':d==='OUT'?'This case reduces usable/physical stock only after approval. Damage/loss/expiry must not be disguised as normal consumption.':'Select Case Type.';if(t==='PHYSICAL DISPOSAL')text='Physical disposal requires prior approval, disposal method, witness and disposal evidence.';$('hint').textContent=text;calcAfter()}
+function reasonChanged(){let c=$('reasonCode').value;if(c==='COUNT_VARIANCE_PLUS')$('caseType').value='POSITIVE STOCK ADJUSTMENT';if(c==='COUNT_VARIANCE_MINUS')$('caseType').value='NEGATIVE STOCK ADJUSTMENT';if(c==='EXPIRED_STOCK')$('caseType').value='EXPIRY';if(c==='APPROVED_DISPOSAL')$('caseType').value='PHYSICAL DISPOSAL';caseChanged()}
+function calcAfter(){let s=Number($('systemQty').value||0),q=Number($('qty').value||0),d=$('direction').value;$('afterQty').value=(d==='IN'?s+q:d==='OUT'?Math.max(0,s-q):s).toFixed(2)}
+function clearForm(){['itemId','itemName','batch','systemQty','qty','afterQty','relatedRef','evidenceRef','reportedBy','verifiedBy','approver','disposalDate','witness','disposalEvidence','reason','capa'].forEach(x=>$(x).value='');['caseType','reasonCode','uom','location','evidenceType','disposalMethod'].forEach(x=>$(x).value='');$('approval').value='DRAFT';$('direction').value='';$('date').value=today();$('ref').value=nextRef();$('msg').textContent='';caseChanged()}
+function fail(t){$('msg').style.color='#b42318';$('msg').textContent=t}
+function auditEvent(ref,action,actor,detail){let a=loadAudit();a.unshift({time:new Date().toISOString(),ref,action,actor:actor||'Unspecified',detail});storeAudit(a);renderAudit()}
+function validate(status){
+let t=$('caseType').value,q=Number($('qty').value||0),s=Number($('systemQty').value||0);
+if(!$('date').value||!t||!$('reasonCode').value||!$('itemId').value.trim()||!$('itemName').value.trim()||!$('uom').value||!$('location').value||!$('reportedBy').value.trim()||!$('reason').value.trim())return 'Complete all required core fields.';
+if(q<=0)return 'Affected quantity must be greater than zero.';
+if(directionFor(t)==='OUT'&&$('systemQty').value!==''&&q>s)return 'OUT adjustment cannot exceed the recorded system quantity.';
+if(status==='SUBMITTED'&&(!$('evidenceType').value||!$('evidenceRef').value.trim()))return 'Submitted exceptions require Evidence Type and Evidence Reference.';
+if(status==='SUBMITTED'&&!$('verifiedBy').value.trim())return 'Submitted exceptions require an Independent Verifier.';
+if(t==='POSITIVE STOCK ADJUSTMENT'&&status==='SUBMITTED'&&!$('relatedRef').value.trim())return 'Positive stock adjustment requires a reconciliation/source transaction reference.';
+if(['APPROVED','REJECTED'].includes($('approval').value)&&!$('approver').value.trim())return 'Approval decision requires Approved / Rejected By.';
+if($('approval').value==='APPROVED'&&$('approver').value.trim().toLowerCase()===$('reportedBy').value.trim().toLowerCase())return 'Reporter cannot approve their own adjustment.';
+if($('approval').value==='APPROVED'&&$('verifiedBy').value.trim().toLowerCase()===$('reportedBy').value.trim().toLowerCase())return 'Independent Verifier must differ from Reporter.';
+if(t==='PHYSICAL DISPOSAL'&&$('approval').value==='APPROVED'&&(!$('disposalMethod').value||!$('disposalDate').value||!$('witness').value.trim()||!$('disposalEvidence').value.trim()))return 'Approved physical disposal requires method, disposal date, witness and disposal evidence reference.';
+if(t==='PHYSICAL DISPOSAL'&&$('reasonCode').value!=='APPROVED_DISPOSAL')return 'Physical Disposal must use APPROVED_DISPOSAL reason code.';
+return '';
+}
+function save(status){
+let err=validate(status);if(err)return fail(err);
+let all=load(),ref=$('ref').value||nextRef(),idx=all.findIndex(x=>x.ref===ref),old=idx>=0?all[idx]:null;
+let q=Number($('qty').value||0),d=directionFor($('caseType').value);
+let r={ref,date:$('date').value,caseType:$('caseType').value,direction:d,reasonCode:$('reasonCode').value,itemId:$('itemId').value.trim(),itemName:$('itemName').value.trim(),uom:$('uom').value,location:$('location').value,batch:$('batch').value.trim(),systemQty:$('systemQty').value===''?null:Number($('systemQty').value),qty:q,afterQty:$('afterQty').value,relatedRef:$('relatedRef').value.trim(),evidenceType:$('evidenceType').value,evidenceRef:$('evidenceRef').value.trim(),reportedBy:$('reportedBy').value.trim(),verifiedBy:$('verifiedBy').value.trim(),approval:$('approval').value,approver:$('approver').value.trim(),disposalMethod:$('disposalMethod').value,disposalDate:$('disposalDate').value,witness:$('witness').value.trim(),disposalEvidence:$('disposalEvidence').value.trim(),reason:$('reason').value.trim(),capa:$('capa').value.trim(),status,ledgerDirection:status==='SUBMITTED'&&$('approval').value==='APPROVED'?d:'PENDING',updatedAt:new Date().toISOString()};
+if(idx>=0)all[idx]=r;else all.unshift(r);store(all);
+let actor=r.approver||r.verifiedBy||r.reportedBy;
+auditEvent(ref,old?'CASE UPDATED':'CASE CREATED',actor,(old?'Previous approval: '+old.approval+' → ':'')+r.approval+'; Ledger='+r.ledgerDirection+'; Evidence='+r.evidenceRef);
+$('msg').style.color='#075b43';$('msg').textContent=ref+' saved. Ledger impact remains PENDING unless the case is SUBMITTED and APPROVED.';render();
+}
+function edit(ref){let x=load().find(v=>v.ref===ref);if(!x)return;Object.keys(x).forEach(k=>{if($(k)&&x[k]!==null&&typeof x[k]!=='object')$(k).value=x[k]??''});$('ref').value=x.ref;caseChanged();window.scrollTo({top:300,behavior:'smooth'});auditEvent(ref,'CASE OPENED','Viewer','Record opened for review')}
+function render(){let all=load(),q=$('search').value.toLowerCase(),f=$('filter').value,a=all.filter(x=>(!q||JSON.stringify(x).toLowerCase().includes(q))&&(!f||x.approval===f));$('rows').innerHTML=a.length?a.map(x=>`<tr><td><b>${esc(x.ref)}</b></td><td>${x.date}</td><td>${esc(x.caseType)}</td><td>${esc(x.reasonCode)}</td><td><b>${x.direction}</b></td><td>${esc(x.itemId)} · ${esc(x.itemName)}</td><td>${esc(x.location)}</td><td>${esc(x.batch||'—')}</td><td>${x.qty}</td><td>${esc(x.evidenceRef||'—')}</td><td>${esc(x.verifiedBy||'—')}</td><td>${esc(x.approval)}</td><td>${esc(x.ledgerDirection)}</td><td><button class="secondary" onclick="edit('${x.ref}')">Open</button></td></tr>`).join(''):'<tr><td colspan="14">No adjustment/exception cases recorded.</td></tr>';$('kAll').textContent=all.length;$('kPend').textContent=all.filter(x=>x.approval==='PENDING APPROVAL').length;$('kApp').textContent=all.filter(x=>x.approval==='APPROVED'&&x.status==='SUBMITTED').length;$('kImpact').textContent=all.filter(x=>x.approval==='APPROVED'&&x.status==='SUBMITTED').reduce((n,x)=>n+(x.direction==='IN'?Number(x.qty): -Number(x.qty)),0).toFixed(2);if(!$('ref').value)$('ref').value=nextRef();renderAudit()}
+function renderAudit(){let a=loadAudit();$('audit').textContent=a.length?a.slice(0,100).map(x=>`${x.time} | ${x.ref} | ${x.action} | ${x.actor} | ${x.detail}`).join('\n'):'No audit events yet.'}
+function exportCSV(){let a=load();if(!a.length)return alert('No cases to export.');let c=['ref','date','caseType','reasonCode','direction','itemId','itemName','uom','location','batch','systemQty','qty','afterQty','relatedRef','evidenceType','evidenceRef','reportedBy','verifiedBy','approval','approver','disposalMethod','disposalDate','witness','disposalEvidence','reason','capa','ledgerDirection'];let csv=[c.join(','),...a.map(r=>c.map(k=>`"${String(r[k]??'').replace(/"/g,'""')}"`).join(','))].join('\n');let b=new Blob([csv],{type:'text/csv'}),u=URL.createObjectURL(b),z=document.createElement('a');z.href=u;z.download='GREENAGRO_STOCK_ADJUSTMENTS_DAMAGE_LOSS_DISPOSAL.csv';z.click();URL.revokeObjectURL(u)}
+clearForm();render();
+</script></body></html>

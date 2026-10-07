@@ -1,0 +1,17 @@
+{
+  "package": "GREENAGRO Stock & Inventory Cumulative V1",
+  "components": [
+    "01_Item_Stock_Master.html",
+    "02_Stock_Receipt_Stock_In.html",
+    "03_Stock_Issue_Stock_Out.html",
+    "04_Stock_Transfer.html",
+    "05_Stock_Return.html",
+    "06_Stock_Adjustment_Damage_Loss_Disposal.html",
+    "07_Physical_Stock_Count_Reconciliation.html",
+    "08_Batch_Lot_Expiry_Traceability.html",
+    "09_Automatic_Stock_Ledger_Stock_Card.html",
+    "10_Inventory_Control_Dashboard_Reorder_Monitor.html",
+    "INDEX.html",
+    "ARCHITECTURE_VERIFICATION_REPORT.html"
+  ]
+}

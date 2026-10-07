@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GREENAGRO Stock Transfer Record V1.0</title>
+<style>
+:root{--g:#075b43;--g2:#0b7a59;--gold:#c89b2b;--bg:#f3f7f5;--line:#d8e2dd;--bad:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:#14221d;font-size:15px}
+header{background:linear-gradient(120deg,var(--g),#103d31);color:#fff;padding:24px}.wrap{max-width:1250px;margin:auto}.tag{color:#f2d47b;font-weight:700;letter-spacing:.08em}h1{margin:5px 0;font-size:27px}
+main{max-width:1250px;margin:20px auto;padding:0 14px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 4px 18px #0000000b}
+h2{color:var(--g);margin-top:0}.note{background:#eef8f4;border-left:5px solid var(--g2);padding:13px;border-radius:10px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.fg{display:flex;flex-direction:column;gap:6px}.wide{grid-column:span 2}
+label{font-weight:700;font-size:13px}input,select,textarea{width:100%;padding:11px;border:1px solid #bfcfc7;border-radius:9px;background:#fff;font:inherit}input[readonly]{background:#f0f3f2}
+.actions,.controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.controls{margin:0 0 12px}.controls input,.controls select{max-width:280px}
+button{padding:11px 16px;border-radius:10px;font-weight:700;cursor:pointer}.primary{border:0;background:var(--g);color:white}.secondary{background:white;border:1px solid var(--g);color:var(--g)}
+.msg{font-weight:700;margin-top:12px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);border-radius:14px;padding:14px}.kpi b{display:block;font-size:23px;color:var(--g)}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:1250px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}th{background:#eef4f1;color:var(--g)}
+.badge{padding:4px 8px;border-radius:999px;background:#e8f5ef;font-weight:700}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.grid{grid-template-columns:1fr}.wide{grid-column:span 1}}
+</style></head>
+<body>
+<header><div class="wrap"><div class="tag">GREENAGRO FOOD EMPORIUM · STOCK & INVENTORY</div><h1>Stock Transfer Record</h1><div>Form 4 · One Transfer ID → Source OUT + Destination IN</div></div></header>
+<main>
+<section class="card">
+<div class="note"><b>Transfer ownership rule:</b> A transfer is entered once. The same Transfer ID controls dispatch, goods in transit, destination receipt and any variance. Never create a separate manual Stock Issue and Stock Receipt for the same internal transfer.</div>
+<div class="kpis"><div class="kpi">Transfers<b id="kAll">0</b></div><div class="kpi">In Transit<b id="kTransit">0</b></div><div class="kpi">Received<b id="kReceived">0</b></div><div class="kpi">Variance Qty<b id="kVariance">0</b></div></div>
+</section>
+
+<section class="card"><h2>New / Update Transfer</h2><div class="grid">
+<div class="fg"><label>Transfer ID</label><input id="ref" readonly></div>
+<div class="fg"><label>Transfer Date *</label><input id="date" type="date"></div>
+<div class="fg"><label>Source Location *</label><select id="source"><option value="">Select</option><option>WIKICHI</option><option>ITURIKE</option><option>IGAWA</option><option>NJOMBE GREENAGRI DEPOT</option><option>IGAWA GREENAGRO DEPOT</option></select></div>
+<div class="fg"><label>Destination Location *</label><select id="destination"><option value="">Select</option><option>WIKICHI</option><option>ITURIKE</option><option>IGAWA</option><option>NJOMBE GREENAGRI DEPOT</option><option>IGAWA GREENAGRO DEPOT</option></select></div>
+
+<div class="fg"><label>Item ID *</label><input id="itemId" placeholder="GFE-ITM-00001"></div>
+<div class="fg"><label>Item Name *</label><input id="itemName" placeholder="Item Master lookup in integrated App"></div>
+<div class="fg"><label>Base UOM *</label><select id="uom"><option value="">Select</option><option>kg</option><option>g</option><option>litre</option><option>ml</option><option>piece</option><option>bag</option><option>tray</option><option>crate</option><option>dose</option><option>bottle</option><option>pack</option><option>tonne</option></select></div>
+<div class="fg"><label>Batch / Lot</label><input id="batch"></div>
+
+<div class="fg"><label>Quantity Dispatched *</label><input id="dispatched" type="number" min="0" step=".01" oninput="calc()"></div>
+<div class="fg"><label>Quantity Received</label><input id="received" type="number" min="0" step=".01" oninput="calc()"></div>
+<div class="fg"><label>Quantity In Transit</label><input id="transit" readonly></div>
+<div class="fg"><label>Variance / Loss</label><input id="variance" readonly></div>
+
+<div class="fg"><label>Dispatch Status *</label><select id="dispatchStatus"><option>DRAFT</option><option>APPROVED FOR DISPATCH</option><option>DISPATCHED</option></select></div>
+<div class="fg"><label>Receiving Status *</label><select id="receiveStatus"><option>NOT RECEIVED</option><option>PARTIALLY RECEIVED</option><option>RECEIVED IN FULL</option><option>RECEIVED WITH VARIANCE</option></select></div>
+<div class="fg"><label>Dispatched By</label><input id="dispatchedBy"></div>
+<div class="fg"><label>Received By</label><input id="receivedBy"></div>
+
+<div class="fg"><label>Approved By</label><input id="approvedBy"></div>
+<div class="fg"><label>Transport / Vehicle Ref</label><input id="vehicle"></div>
+<div class="fg"><label>Dispatch Date/Time</label><input id="dispatchTime" type="datetime-local"></div>
+<div class="fg"><label>Receipt Date/Time</label><input id="receiptTime" type="datetime-local"></div>
+
+<div class="fg wide"><label>Transfer Reason / Destination Purpose *</label><textarea id="reason" rows="3"></textarea></div>
+<div class="fg wide"><label>Variance / Condition / Transport Notes</label><textarea id="notes" rows="3"></textarea></div>
+</div>
+<div class="actions"><button class="secondary" onclick="save('DRAFT')">Save Draft</button><button class="primary" onclick="save('SUBMITTED')">Save / Update Transfer</button><button class="secondary" onclick="clearForm()">Clear</button></div><div id="msg" class="msg"></div>
+</section>
+
+<section class="card"><h2>Transfer Register</h2>
+<div class="controls"><input id="search" placeholder="Search transfer / item / site" oninput="render()"><select id="filter" onchange="render()"><option value="">All Receiving Status</option><option>NOT RECEIVED</option><option>PARTIALLY RECEIVED</option><option>RECEIVED IN FULL</option><option>RECEIVED WITH VARIANCE</option></select><button class="secondary" onclick="exportCSV()">Export CSV</button></div>
+<div class="tablewrap"><table><thead><tr><th>Transfer</th><th>Date</th><th>Source</th><th>Destination</th><th>Item</th><th>Batch</th><th>Dispatched</th><th>Received</th><th>In Transit</th><th>Variance</th><th>Dispatch</th><th>Receipt</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div>
+</section></main>
+
+<script>
+const KEY='greenagro_stock_transfers_v1',$=x=>document.getElementById(x),load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}},store=a=>localStorage.setItem(KEY,JSON.stringify(a)),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function today(){return new Date().toISOString().slice(0,10)}
+function nextRef(){let a=load(),n=a.reduce((m,x)=>Math.max(m,Number((x.ref||'').split('-').pop())||0),0)+1;return 'TRF-'+String(n).padStart(6,'0')}
+function calc(){let d=Number($('dispatched').value||0),r=Number($('received').value||0);$('transit').value=Math.max(0,d-r).toFixed(2);$('variance').value=(d-r).toFixed(2)}
+function clearForm(){['itemId','itemName','batch','dispatched','received','dispatchedBy','receivedBy','approvedBy','vehicle','dispatchTime','receiptTime','reason','notes'].forEach(x=>$(x).value='');['source','destination','uom'].forEach(x=>$(x).value='');$('dispatchStatus').value='DRAFT';$('receiveStatus').value='NOT RECEIVED';$('date').value=today();$('ref').value=nextRef();$('transit').value='0.00';$('variance').value='0.00';$('msg').textContent=''}
+function fail(t){$('msg').style.color='#b42318';$('msg').textContent=t}
+function save(status){
+let d=Number($('dispatched').value||0),r=Number($('received').value||0);
+if(!$('date').value||!$('source').value||!$('destination').value||!$('itemId').value.trim()||!$('itemName').value.trim()||!$('uom').value||!$('reason').value.trim())return fail('Complete all required fields.');
+if($('source').value===$('destination').value)return fail('Source and Destination cannot be the same.');
+if(d<=0)return fail('Quantity Dispatched must be greater than zero.');
+if(r<0||r>d)return fail('Quantity Received cannot exceed Quantity Dispatched.');
+if(['APPROVED FOR DISPATCH','DISPATCHED'].includes($('dispatchStatus').value)&&!$('approvedBy').value.trim())return fail('Approved/Dispatched transfer requires Approved By.');
+if($('dispatchStatus').value==='DISPATCHED'&&!$('dispatchedBy').value.trim())return fail('DISPATCHED transfer requires Dispatched By.');
+if($('receiveStatus').value!=='NOT RECEIVED'&&!$('receivedBy').value.trim())return fail('Receiving confirmation requires Received By.');
+if($('receiveStatus').value==='RECEIVED IN FULL'&&r!==d)return fail('Received in Full requires received quantity to equal dispatched quantity.');
+if($('receiveStatus').value==='RECEIVED WITH VARIANCE'&&r===d)return fail('Received With Variance requires a quantity difference.');
+let all=load(), ref=$('ref').value||nextRef(), idx=all.findIndex(x=>x.ref===ref);
+let rec={ref,date:$('date').value,source:$('source').value,destination:$('destination').value,itemId:$('itemId').value.trim(),itemName:$('itemName').value.trim(),uom:$('uom').value,batch:$('batch').value.trim(),dispatched:d,received:r,inTransit:Math.max(0,d-r),variance:d-r,dispatchStatus:$('dispatchStatus').value,receiveStatus:$('receiveStatus').value,dispatchedBy:$('dispatchedBy').value.trim(),receivedBy:$('receivedBy').value.trim(),approvedBy:$('approvedBy').value.trim(),vehicle:$('vehicle').value.trim(),dispatchTime:$('dispatchTime').value,receiptTime:$('receiptTime').value,reason:$('reason').value.trim(),notes:$('notes').value.trim(),status,sourceLedger:$('dispatchStatus').value==='DISPATCHED'?'OUT':'PENDING',destinationLedger:$('receiveStatus').value!=='NOT RECEIVED'&&r>0?'IN':'PENDING',updatedAt:new Date().toISOString()};
+if(idx>=0)all[idx]=rec;else all.unshift(rec);store(all);$('msg').style.color='#075b43';$('msg').textContent=ref+' saved. One Transfer ID controls Source OUT, In-Transit and Destination IN.';render();
+}
+function edit(ref){let x=load().find(v=>v.ref===ref);if(!x)return;Object.keys(x).forEach(k=>{if($(k)&&typeof x[k]!=='object')$(k).value=x[k]??''});$('ref').value=x.ref;calc();window.scrollTo({top:300,behavior:'smooth'})}
+function render(){let all=load(),q=$('search').value.toLowerCase(),f=$('filter').value,a=all.filter(x=>(!q||JSON.stringify(x).toLowerCase().includes(q))&&(!f||x.receiveStatus===f));$('rows').innerHTML=a.length?a.map(x=>`<tr onclick="edit('${x.ref}')" style="cursor:pointer"><td><b>${esc(x.ref)}</b></td><td>${x.date}</td><td>${esc(x.source)}</td><td>${esc(x.destination)}</td><td>${esc(x.itemId)} · ${esc(x.itemName)}</td><td>${esc(x.batch||'—')}</td><td>${x.dispatched}</td><td>${x.received}</td><td>${x.inTransit}</td><td><b>${x.variance}</b></td><td>${esc(x.dispatchStatus)}</td><td>${esc(x.receiveStatus)}</td><td><span class="badge">${x.status}</span></td></tr>`).join(''):'<tr><td colspan="13">No transfers recorded.</td></tr>';$('kAll').textContent=all.length;$('kTransit').textContent=all.filter(x=>x.dispatchStatus==='DISPATCHED'&&x.receiveStatus!=='RECEIVED IN FULL').length;$('kReceived').textContent=all.filter(x=>['RECEIVED IN FULL','RECEIVED WITH VARIANCE'].includes(x.receiveStatus)).length;$('kVariance').textContent=all.reduce((n,x)=>n+Math.max(0,Number(x.variance||0)),0).toFixed(2);if(!$('ref').value)$('ref').value=nextRef()}
+function exportCSV(){let a=load();if(!a.length)return alert('No transfers to export.');let c=['ref','date','source','destination','itemId','itemName','uom','batch','dispatched','received','inTransit','variance','dispatchStatus','receiveStatus','dispatchedBy','receivedBy','approvedBy','vehicle','reason','status'];let csv=[c.join(','),...a.map(r=>c.map(k=>`"${String(r[k]??'').replace(/"/g,'""')}"`).join(','))].join('\n');let b=new Blob([csv],{type:'text/csv'}),u=URL.createObjectURL(b),z=document.createElement('a');z.href=u;z.download='GREENAGRO_STOCK_TRANSFERS.csv';z.click();URL.revokeObjectURL(u)}
+clearForm();render();
+</script></body></html>

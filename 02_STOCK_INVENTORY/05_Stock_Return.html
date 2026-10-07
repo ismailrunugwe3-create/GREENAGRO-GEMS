@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GREENAGRO Stock Return Record V1.0</title>
+<style>
+:root{--g:#075b43;--g2:#0b7a59;--bg:#f3f7f5;--line:#d8e2dd;--bad:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:#14221d;font-size:15px}
+header{background:linear-gradient(120deg,var(--g),#103d31);color:white;padding:24px}.wrap{max-width:1250px;margin:auto}.tag{color:#f2d47b;font-weight:700;letter-spacing:.08em}h1{margin:5px 0;font-size:27px}
+main{max-width:1250px;margin:20px auto;padding:0 14px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 4px 18px #0000000b}
+h2{color:var(--g);margin-top:0}.note{background:#eef8f4;border-left:5px solid var(--g2);padding:13px;border-radius:10px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.fg{display:flex;flex-direction:column;gap:6px}.wide{grid-column:span 2}label{font-weight:700;font-size:13px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #bfcfc7;border-radius:9px;background:#fff;font:inherit}input[readonly]{background:#f0f3f2}
+.actions,.controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.controls{margin:0 0 12px}.controls input,.controls select{max-width:280px}
+button{padding:11px 16px;border-radius:10px;font-weight:700;cursor:pointer}.primary{border:0;background:var(--g);color:#fff}.secondary{background:#fff;border:1px solid var(--g);color:var(--g)}
+.msg{font-weight:700;margin-top:12px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);border-radius:14px;padding:14px}.kpi b{display:block;font-size:23px;color:var(--g)}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:1200px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}th{background:#eef4f1;color:var(--g)}
+.badge{padding:4px 8px;border-radius:999px;background:#e8f5ef;font-weight:700}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.grid{grid-template-columns:1fr}.wide{grid-column:span 1}}
+</style></head><body>
+<header><div class="wrap"><div class="tag">GREENAGRO FOOD EMPORIUM · STOCK & INVENTORY</div><h1>Stock Return Record</h1><div>Form 5 · Original Transaction → Return → Controlled Stock Direction</div></div></header>
+<main>
+<section class="card"><div class="note"><b>Return rule:</b> Never create an unexplained receipt or issue to represent a return. Every return links to its original transaction. The system determines whether the approved return is Stock-IN or Stock-OUT from the Return Type.</div>
+<div class="kpis"><div class="kpi">Returns<b id="kAll">0</b></div><div class="kpi">Stock-IN Returns<b id="kIn">0</b></div><div class="kpi">Stock-OUT Returns<b id="kOut">0</b></div><div class="kpi">Quarantined Qty<b id="kQ">0</b></div></div></section>
+
+<section class="card"><h2>New Stock Return</h2><div class="grid">
+<div class="fg"><label>Return Reference</label><input id="ref" readonly></div>
+<div class="fg"><label>Return Date *</label><input id="date" type="date"></div>
+<div class="fg"><label>Return Type *</label><select id="type" onchange="setDirection()"><option value="">Select</option><option>Unused Material / Production Return</option><option>Customer Return</option><option>Interdepartmental / Operational Return</option><option>Supplier Return</option></select></div>
+<div class="fg"><label>Ledger Direction</label><input id="direction" readonly></div>
+
+<div class="fg"><label>Original Transaction Type *</label><select id="originalType"><option value="">Select</option><option>Stock Issue</option><option>Sale / Dispatch</option><option>Stock Receipt / Purchase Receipt</option><option>Production Issue</option><option>Other Approved Source</option></select></div>
+<div class="fg"><label>Original Transaction Reference *</label><input id="originalRef" placeholder="ISS / Sale / Receipt / other ref"></div>
+<div class="fg"><label>Item ID *</label><input id="itemId" placeholder="GFE-ITM-00001"></div>
+<div class="fg"><label>Item Name *</label><input id="itemName" placeholder="Item Master lookup in integrated App"></div>
+
+<div class="fg"><label>Base UOM *</label><select id="uom"><option value="">Select</option><option>kg</option><option>g</option><option>litre</option><option>ml</option><option>piece</option><option>bag</option><option>tray</option><option>crate</option><option>dose</option><option>bottle</option><option>pack</option><option>tonne</option></select></div>
+<div class="fg"><label>Batch / Lot</label><input id="batch"></div>
+<div class="fg"><label>Return Quantity *</label><input id="qty" type="number" min="0" step=".01"></div>
+<div class="fg"><label>Stock Location *</label><select id="location"><option value="">Select</option><option>WIKICHI</option><option>ITURIKE</option><option>IGAWA</option><option>NJOMBE GREENAGRI DEPOT</option><option>IGAWA GREENAGRO DEPOT</option></select></div>
+
+<div class="fg"><label>Condition on Return *</label><select id="condition" onchange="conditionChanged()"><option>GOOD / REUSABLE</option><option>OPENED / PART USED</option><option>DAMAGED</option><option>EXPIRED</option><option>QUALITY HOLD</option><option>UNFIT / DISPOSAL REQUIRED</option></select></div>
+<div class="fg"><label>Disposition *</label><select id="disposition"><option>RETURN TO AVAILABLE STOCK</option><option>QUARANTINE / HOLD</option><option>RETURN TO SUPPLIER</option><option>DISPOSAL REVIEW</option></select></div>
+<div class="fg"><label>Returned By *</label><input id="returnedBy"></div>
+<div class="fg"><label>Received / Handled By *</label><input id="handledBy"></div>
+
+<div class="fg"><label>Approval Status *</label><select id="approval"><option>PENDING</option><option>APPROVED</option><option>REJECTED</option></select></div>
+<div class="fg"><label>Approved / Reviewed By</label><input id="reviewer"></div>
+<div class="fg wide"><label>Reason for Return *</label><textarea id="reason" rows="3"></textarea></div>
+<div class="fg wide"><label>Condition / Corrective Action Notes</label><textarea id="notes" rows="3"></textarea></div>
+</div>
+<div id="hint" class="note" style="margin-top:15px">Select a Return Type to determine the ledger direction.</div>
+<div class="actions"><button class="secondary" onclick="save('DRAFT')">Save Draft</button><button class="primary" onclick="save('SUBMITTED')">Save & Submit</button><button class="secondary" onclick="clearForm()">Clear</button></div><div id="msg" class="msg"></div>
+</section>
+
+<section class="card"><h2>Stock Return Register</h2><div class="controls"><input id="search" placeholder="Search return / original ref / item" oninput="render()"><select id="filter" onchange="render()"><option value="">All Directions</option><option>IN</option><option>OUT</option></select><button class="secondary" onclick="exportCSV()">Export CSV</button></div>
+<div class="tablewrap"><table><thead><tr><th>Return Ref</th><th>Date</th><th>Type</th><th>Direction</th><th>Original Ref</th><th>Item</th><th>Batch</th><th>Qty</th><th>Location</th><th>Condition</th><th>Disposition</th><th>Approval</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+</main>
+<script>
+const KEY='greenagro_stock_returns_v1',$=x=>document.getElementById(x),load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}},store=a=>localStorage.setItem(KEY,JSON.stringify(a)),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function today(){return new Date().toISOString().slice(0,10)}
+function nextRef(){let a=load(),n=a.reduce((m,x)=>Math.max(m,Number((x.ref||'').split('-').pop())||0),0)+1;return 'RTN-'+String(n).padStart(6,'0')}
+function setDirection(){let t=$('type').value,d=t==='Supplier Return'?'OUT':t?'IN':'';$('direction').value=d;$('hint').textContent=d==='IN'?'Approved return restores physical stock at the selected location. Availability still depends on condition/disposition.':d==='OUT'?'Approved supplier return removes physical stock and must link to the original receipt/purchase transaction.':'Select a Return Type to determine the ledger direction.'}
+function conditionChanged(){let c=$('condition').value;if(['DAMAGED','EXPIRED','QUALITY HOLD','UNFIT / DISPOSAL REQUIRED'].includes(c))$('disposition').value=c==='UNFIT / DISPOSAL REQUIRED'?'DISPOSAL REVIEW':'QUARANTINE / HOLD'}
+function clearForm(){['originalRef','itemId','itemName','batch','qty','returnedBy','handledBy','reviewer','reason','notes'].forEach(x=>$(x).value='');['type','originalType','uom','location'].forEach(x=>$(x).value='');$('condition').value='GOOD / REUSABLE';$('disposition').value='RETURN TO AVAILABLE STOCK';$('approval').value='PENDING';$('direction').value='';$('date').value=today();$('ref').value=nextRef();$('msg').textContent='';setDirection()}
+function fail(t){$('msg').style.color='#b42318';$('msg').textContent=t}
+function save(status){let q=Number($('qty').value||0),dir=$('direction').value;
+if(!$('date').value||!$('type').value||!dir||!$('originalType').value||!$('originalRef').value.trim()||!$('itemId').value.trim()||!$('itemName').value.trim()||!$('uom').value||!$('location').value||!$('returnedBy').value.trim()||!$('handledBy').value.trim()||!$('reason').value.trim())return fail('Complete all required fields.');
+if(q<=0)return fail('Return Quantity must be greater than zero.');
+if($('approval').value==='APPROVED'&&!$('reviewer').value.trim())return fail('Approved return requires Approved / Reviewed By.');
+if($('type').value==='Supplier Return'&&$('originalType').value!=='Stock Receipt / Purchase Receipt')return fail('Supplier Return must reference the original Stock Receipt / Purchase Receipt.');
+if(['DAMAGED','EXPIRED','QUALITY HOLD','UNFIT / DISPOSAL REQUIRED'].includes($('condition').value)&&$('disposition').value==='RETURN TO AVAILABLE STOCK')return fail('Damaged, expired, held or unfit stock cannot return directly to available stock.');
+let all=load();
+if(all.some(x=>x.status==='SUBMITTED'&&x.originalRef===$('originalRef').value.trim()&&x.itemId===$('itemId').value.trim()&&x.type===$('type').value&&x.qty===q))return fail('Possible duplicate return blocked: same original reference, item, type and quantity.');
+let r={ref:nextRef(),date:$('date').value,type:$('type').value,direction:dir,originalType:$('originalType').value,originalRef:$('originalRef').value.trim(),itemId:$('itemId').value.trim(),itemName:$('itemName').value.trim(),uom:$('uom').value,batch:$('batch').value.trim(),qty:q,location:$('location').value,condition:$('condition').value,disposition:$('disposition').value,returnedBy:$('returnedBy').value.trim(),handledBy:$('handledBy').value.trim(),approval:$('approval').value,reviewer:$('reviewer').value.trim(),reason:$('reason').value.trim(),notes:$('notes').value.trim(),status,ledgerDirection:status==='SUBMITTED'&&$('approval').value==='APPROVED'?dir:'PENDING',createdAt:new Date().toISOString()};
+all.unshift(r);store(all);$('msg').style.color='#075b43';$('msg').textContent=r.ref+' saved. Approved return will post '+dir+' while retaining the original transaction link.';clearForm();render()}
+function render(){let all=load(),q=$('search').value.toLowerCase(),f=$('filter').value,a=all.filter(x=>(!q||JSON.stringify(x).toLowerCase().includes(q))&&(!f||x.direction===f));$('rows').innerHTML=a.length?a.map(x=>`<tr><td><b>${esc(x.ref)}</b></td><td>${x.date}</td><td>${esc(x.type)}</td><td><b>${x.direction}</b></td><td>${esc(x.originalRef)}</td><td>${esc(x.itemId)} · ${esc(x.itemName)}</td><td>${esc(x.batch||'—')}</td><td>${x.qty}</td><td>${esc(x.location)}</td><td>${esc(x.condition)}</td><td>${esc(x.disposition)}</td><td>${esc(x.approval)}</td><td><span class="badge">${x.status}</span></td></tr>`).join(''):'<tr><td colspan="13">No returns recorded.</td></tr>';$('kAll').textContent=all.length;$('kIn').textContent=all.filter(x=>x.direction==='IN'&&x.status==='SUBMITTED'&&x.approval==='APPROVED').length;$('kOut').textContent=all.filter(x=>x.direction==='OUT'&&x.status==='SUBMITTED'&&x.approval==='APPROVED').length;$('kQ').textContent=all.filter(x=>x.disposition==='QUARANTINE / HOLD').reduce((n,x)=>n+Number(x.qty||0),0).toFixed(2);$('ref').value=nextRef()}
+function exportCSV(){let a=load();if(!a.length)return alert('No returns to export.');let c=['ref','date','type','direction','originalType','originalRef','itemId','itemName','uom','batch','qty','location','condition','disposition','returnedBy','handledBy','approval','reviewer','reason','status'];let csv=[c.join(','),...a.map(r=>c.map(k=>`"${String(r[k]??'').replace(/"/g,'""')}"`).join(','))].join('\n');let b=new Blob([csv],{type:'text/csv'}),u=URL.createObjectURL(b),z=document.createElement('a');z.href=u;z.download='GREENAGRO_STOCK_RETURNS.csv';z.click();URL.revokeObjectURL(u)}
+clearForm();render();
+</script></body></html>

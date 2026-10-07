@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GREENAGRO — Item & Stock Master Register V1.0</title>
+<style>
+:root{--g:#075b43;--g2:#0b7a59;--gold:#c89b2b;--ink:#14221d;--muted:#64716c;--bg:#f3f7f5;--line:#d8e2dd;--bad:#b42318;--warn:#9a6700}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--ink);font-size:15px}
+header{background:linear-gradient(120deg,var(--g),#103d31);color:white;padding:24px}.brand{max-width:1250px;margin:auto}.brand h1{margin:4px 0;font-size:27px}.tag{color:#f2d47b;font-weight:700;letter-spacing:.08em}
+main{max-width:1250px;margin:20px auto;padding:0 14px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 4px 18px #0000000b}
+h2,h3{color:var(--g);margin-top:0}.note{background:#eef8f4;border-left:5px solid var(--g2);padding:13px;border-radius:10px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.fg{display:flex;flex-direction:column;gap:6px}.wide{grid-column:span 2}
+label{font-weight:700;font-size:13px}input,select,textarea{width:100%;padding:11px;border:1px solid #bfcfc7;border-radius:9px;background:white;font:inherit}input[readonly]{background:#f0f3f2}
+button{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.primary{background:var(--g);color:white}.secondary{background:white;border:1px solid var(--g);color:var(--g)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.msg{margin-top:12px;font-weight:700}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:1050px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}th{background:#eef4f1;color:var(--g);position:sticky;top:0}
+.badge{padding:4px 8px;border-radius:999px;background:#e8f5ef;font-weight:700}.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.controls input,.controls select{max-width:260px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);border-radius:14px;padding:14px}.kpi b{font-size:23px;color:var(--g);display:block}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.grid{grid-template-columns:1fr}.wide{grid-column:span 1}.brand h1{font-size:22px}}
+</style></head><body>
+<header><div class="brand"><div class="tag">GREENAGRO FOOD EMPORIUM · FRESH FARM PRODUCTS</div><h1>Item & Stock Master Register</h1><div>Stock & Inventory Form Group · Foundation V1.0 · ENTER ONCE → USE EVERYWHERE</div></div></header>
+<main>
+<section class="card"><div class="note"><b>Master ownership rule:</b> This register identifies an item once. It does not accept opening/current quantity or manual stock value. Quantity, balance and value will be derived from approved stock transactions.</div>
+<div class="kpis"><div class="kpi"><span>Total Items</span><b id="kTotal">0</b></div><div class="kpi"><span>Active</span><b id="kActive">0</b></div><div class="kpi"><span>Batch Controlled</span><b id="kBatch">0</b></div><div class="kpi"><span>Expiry Controlled</span><b id="kExpiry">0</b></div></div></section>
+
+<section class="card"><h2>Register / Maintain Item</h2>
+<div class="grid">
+<div class="fg"><label>Item ID / SKU *</label><input id="itemId" readonly placeholder="Generated automatically"></div>
+<div class="fg"><label>Item Name *</label><input id="name"></div>
+<div class="fg"><label>Category *</label><select id="category"><option value="">Select</option><option>Feed Raw Material</option><option>Finished Poultry Feed</option><option>Poultry / Egg Product</option><option>Veterinary Medicine / Vaccine</option><option>Crop Input</option><option>Crop / Produce</option><option>Goat / Meat Product</option><option>Packaging Material</option><option>Farm Consumable</option><option>Spare / Maintenance Item</option><option>Cleaning / Biosecurity Item</option><option>Other Stock Item</option></select></div>
+<div class="fg"><label>Subcategory</label><input id="subcategory"></div>
+<div class="fg"><label>Base Unit of Measure *</label><select id="uom"><option value="">Select</option><option>kg</option><option>g</option><option>litre</option><option>ml</option><option>piece</option><option>bag</option><option>tray</option><option>crate</option><option>dose</option><option>bottle</option><option>pack</option><option>tonne</option></select></div>
+<div class="fg"><label>Pack Size / Conversion</label><input id="pack" placeholder="e.g. 50 kg/bag, 30 eggs/tray"></div>
+<div class="fg"><label>Project / Business Use</label><select id="project"><option>Shared / Company-wide</option><option>Poultry</option><option>Goat</option><option>Crops</option><option>Feed Manufacturing</option><option>Sales / Depot</option></select></div>
+<div class="fg"><label>Default Storage Site</label><select id="site"><option value="">Select</option><option>WIKICHI</option><option>ITURIKE</option><option>IGAWA</option><option>NJOMBE GREENAGRI DEPOT</option><option>IGAWA GREENAGRO DEPOT</option><option>Other / Variable</option></select></div>
+<div class="fg"><label>Minimum Stock Level</label><input id="min" type="number" min="0" step="0.01"></div>
+<div class="fg"><label>Reorder Level</label><input id="reorder" type="number" min="0" step="0.01"></div>
+<div class="fg"><label>Target / Maximum Level</label><input id="max" type="number" min="0" step="0.01"></div>
+<div class="fg"><label>Reorder Quantity</label><input id="roq" type="number" min="0" step="0.01"></div>
+<div class="fg"><label>Batch / Lot Tracking *</label><select id="batch"><option>NO</option><option>YES</option></select></div>
+<div class="fg"><label>Expiry Tracking *</label><select id="expiry"><option>NO</option><option>YES</option></select></div>
+<div class="fg"><label>Serial Tracking</label><select id="serial"><option>NO</option><option>YES</option></select></div>
+<div class="fg"><label>Quality Release Required?</label><select id="qc"><option>NO</option><option>YES</option></select></div>
+<div class="fg"><label>Storage Condition</label><select id="storage"><option>Normal dry store</option><option>Cool / temperature controlled</option><option>Refrigerated</option><option>Secure medicine store</option><option>Produce / short shelf-life area</option><option>Other</option></select></div>
+<div class="fg"><label>Issue Method</label><select id="issue"><option>FIFO</option><option>FEFO</option><option>Specific Batch</option><option>Not Applicable</option></select></div>
+<div class="fg"><label>Status *</label><select id="status"><option>ACTIVE</option><option>INACTIVE</option><option>BLOCKED</option></select></div>
+<div class="fg wide"><label>Description / Specification</label><textarea id="desc" rows="3"></textarea></div>
+<div class="fg wide"><label>Storage / Handling Notes</label><textarea id="notes" rows="3"></textarea></div>
+</div>
+<div class="actions"><button class="primary" onclick="saveItem()">Save Item</button><button class="secondary" onclick="clearForm()">Clear</button></div><div id="msg" class="msg"></div>
+</section>
+
+<section class="card"><h2>Item Master Register</h2><div class="controls"><input id="search" placeholder="Search ID / item / category" oninput="render()"><select id="filter" onchange="render()"><option value="">All Status</option><option>ACTIVE</option><option>INACTIVE</option><option>BLOCKED</option></select><button class="secondary" onclick="exportCSV()">Export CSV</button></div>
+<div class="tablewrap"><table><thead><tr><th>Item ID</th><th>Item</th><th>Category</th><th>UOM</th><th>Project</th><th>Default Site</th><th>Reorder</th><th>Batch</th><th>Expiry</th><th>Issue</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+</main>
+<script>
+const KEY='greenagro_stock_item_master_v1';
+const $=id=>document.getElementById(id), load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}}, store=a=>localStorage.setItem(KEY,JSON.stringify(a));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function nextId(){let a=load(),n=a.reduce((m,x)=>Math.max(m,Number((x.itemId||'').split('-').pop())||0),0)+1;return 'GFE-ITM-'+String(n).padStart(5,'0')}
+function clearForm(){['name','subcategory','pack','min','reorder','max','roq','desc','notes'].forEach(x=>$(x).value='');['category','uom','site'].forEach(x=>$(x).value='');$('project').value='Shared / Company-wide';['batch','expiry','serial','qc'].forEach(x=>$(x).value='NO');$('storage').value='Normal dry store';$('issue').value='FIFO';$('status').value='ACTIVE';$('itemId').value=nextId();$('msg').textContent=''}
+function saveItem(){let a=load(),name=$('name').value.trim(),cat=$('category').value,uom=$('uom').value;if(!name||!cat||!uom){$('msg').style.color='#b42318';$('msg').textContent='Item Name, Category and Base UOM are required.';return}
+if(a.some(x=>x.name.toLowerCase()===name.toLowerCase()&&x.uom===uom)){ $('msg').style.color='#b42318';$('msg').textContent='Duplicate blocked: same Item Name + Base UOM already exists.';return}
+let min=Number($('min').value||0),re=Number($('reorder').value||0),mx=Number($('max').value||0);if(mx&&re>mx){$('msg').style.color='#b42318';$('msg').textContent='Reorder level cannot exceed maximum level.';return}
+let r={itemId:nextId(),name,category:cat,subcategory:$('subcategory').value.trim(),uom,pack:$('pack').value.trim(),project:$('project').value,site:$('site').value,min,reorder:re,max:mx,roq:Number($('roq').value||0),batch:$('batch').value,expiry:$('expiry').value,serial:$('serial').value,qc:$('qc').value,storage:$('storage').value,issue:$('issue').value,status:$('status').value,description:$('desc').value.trim(),notes:$('notes').value.trim(),createdAt:new Date().toISOString()};a.push(r);store(a);$('msg').style.color='#075b43';$('msg').textContent=r.itemId+' saved. This ID will be reused across all stock and business transactions.';clearForm();render()}
+function render(){let a=load(),q=$('search').value.toLowerCase(),f=$('filter').value;a=a.filter(x=>(!q||JSON.stringify(x).toLowerCase().includes(q))&&(!f||x.status===f));$('rows').innerHTML=a.length?a.map(x=>`<tr><td><b>${esc(x.itemId)}</b></td><td>${esc(x.name)}</td><td>${esc(x.category)}</td><td>${esc(x.uom)}</td><td>${esc(x.project)}</td><td>${esc(x.site||'—')}</td><td>${x.reorder}</td><td>${x.batch}</td><td>${x.expiry}</td><td>${esc(x.issue)}</td><td><span class="badge">${x.status}</span></td></tr>`).join(''):'<tr><td colspan="11">No items registered yet.</td></tr>';let all=load();$('kTotal').textContent=all.length;$('kActive').textContent=all.filter(x=>x.status==='ACTIVE').length;$('kBatch').textContent=all.filter(x=>x.batch==='YES').length;$('kExpiry').textContent=all.filter(x=>x.expiry==='YES').length;$('itemId').value=nextId()}
+function exportCSV(){let a=load();if(!a.length)return alert('No items to export.');let c=['itemId','name','category','subcategory','uom','pack','project','site','min','reorder','max','roq','batch','expiry','serial','qc','storage','issue','status'];let csv=[c.join(','),...a.map(r=>c.map(k=>`"${String(r[k]??'').replace(/"/g,'""')}"`).join(','))].join('\n');let b=new Blob([csv],{type:'text/csv'}),u=URL.createObjectURL(b),z=document.createElement('a');z.href=u;z.download='GREENAGRO_ITEM_STOCK_MASTER.csv';z.click();URL.revokeObjectURL(u)}
+clearForm();render();
+</script></body></html>
