@@ -1,0 +1,37 @@
+{
+  "module": "07 Organization, Duties & Access Control",
+  "version": "1.0",
+  "manual_forms": 5,
+  "derived_engines": 1,
+  "official_departments": [
+    "Executive Department",
+    "HR & Administration",
+    "Production and Operations",
+    "Procurement, Store, Depots, Logistics & Distribution",
+    "Finance",
+    "Sales, Marketing and Customer Services",
+    "Quality Assurance & Improvement"
+  ],
+  "access_chain": "Organogram -> Department -> Position -> Duty Template -> Employee Assignment -> Project/Site -> Form -> Section/Action -> Approval Level",
+  "controls": [
+    "least privilege",
+    "default deny in final GEMS",
+    "project/site scope",
+    "section/action permissions",
+    "approval levels",
+    "segregation of duties",
+    "access exception monitoring",
+    "audit trail",
+    "offboarding handoff"
+  ],
+  "files": [
+    "03_Employee_Duty_Project_Site_Assignment.html",
+    "05_Approval_Levels_Segregation_of_Duties.html",
+    "01_Organogram_Departments_Positions.html",
+    "ARCHITECTURE_VERIFICATION_REPORT.html",
+    "04_Form_Section_Action_Permissions.html",
+    "06_Access_Governance_Monitoring_Audit_Engine.html",
+    "INDEX.html",
+    "02_Position_Duty_Templates.html"
+  ]
+}
