@@ -1,0 +1,10 @@
+{
+  "name":"GREENAGRO Enterprise Management System",
+  "short_name":"GEMS",
+  "start_url":"/",
+  "scope":"/",
+  "display":"standalone",
+  "background_color":"#f3f7f4",
+  "theme_color":"#0c3b20",
+  "description":"GREENAGRO FOOD EMPORIUM centralized enterprise management system"
+}

@@ -1,0 +1,224 @@
+{
+  "forms/01_PRODUCTION_OPERATIONS/GOAT OPERATIONS/GREENAGRO_GOAT_BREEDING_REPRODUCTION_RECORD_FINAL_1_0.html": [
+    "greenagro_goat_breeding_final_10"
+  ],
+  "forms/01_PRODUCTION_OPERATIONS/GOAT OPERATIONS/GREENAGRO_GOAT_DAILY_HERD_RECORD_FINAL_1_0.html": [
+    "greenagro_goat_daily_herd_final_10"
+  ],
+  "forms/01_PRODUCTION_OPERATIONS/GOAT OPERATIONS/GREENAGRO_GOAT_GROWTH_PERFORMANCE_RECORD_FINAL_1_0.html": [
+    "greenagro_goat_growth_final_10"
+  ],
+  "forms/01_PRODUCTION_OPERATIONS/GOAT OPERATIONS/GREENAGRO_GOAT_MOVEMENT_POPULATION_CONTROL_FINAL_1_0.html": [
+    "greenagro_goat_movement_final_10"
+  ],
+  "forms/01_PRODUCTION_OPERATIONS/POULTRY OPERATIONS/GREENAGRO_BIOSECURITY_FARM_INSPECTION_FINAL_1_0.html": [
+    "greenagro_biosecurity_inspection_final_10"
+  ],
+  "forms/01_PRODUCTION_OPERATIONS/POULTRY OPERATIONS/GREENAGRO_FEEDING_DAILY_RECORD_FINAL_1_0.html": [
+    "greenagro_feeding_daily_design_03"
+  ],
+  "forms/01_PRODUCTION_OPERATIONS/POULTRY OPERATIONS/GREENAGRO_FLOCK_MOVEMENT_POPULATION_CONTROL_FINAL_1_0.html": [
+    "greenagro_flock_movement_final_10"
+  ],
+  "forms/01_PRODUCTION_OPERATIONS/POULTRY OPERATIONS/GREENAGRO_POULTRY_DAILY_FLOCK_RECORD_DESIGN_0_1.html": [
+    "greenagro_poultry_daily_flock_01"
+  ],
+  "forms/01_PRODUCTION_OPERATIONS/POULTRY OPERATIONS/GREENAGRO_POULTRY_PRODUCTION_EGG_RECORD_FINAL_1_0.html": [
+    "greenagro_poultry_production_egg_final_10"
+  ],
+  "forms/01_PRODUCTION_OPERATIONS/POULTRY OPERATIONS/GREENAGRO_VETERINARY_DAILY_RECORD_DESIGN_0_4.html": [
+    "greenagro_vet_daily_design_02"
+  ],
+  "forms/02_STOCK_INVENTORY/01_Item_Stock_Master.html": [
+    "greenagro_stock_item_master_v1"
+  ],
+  "forms/02_STOCK_INVENTORY/02_Stock_Receipt_Stock_In.html": [
+    "greenagro_stock_receipts_v1"
+  ],
+  "forms/02_STOCK_INVENTORY/03_Stock_Issue_Stock_Out.html": [
+    "greenagro_stock_issues_v1"
+  ],
+  "forms/02_STOCK_INVENTORY/04_Stock_Transfer.html": [
+    "greenagro_stock_transfers_v1"
+  ],
+  "forms/02_STOCK_INVENTORY/05_Stock_Return.html": [
+    "greenagro_stock_returns_v1"
+  ],
+  "forms/02_STOCK_INVENTORY/06_Stock_Adjustment_Damage_Loss_Disposal.html": [
+    "greenagro_stock_adjustments_v1"
+  ],
+  "forms/02_STOCK_INVENTORY/07_Physical_Stock_Count_Reconciliation.html": [
+    "greenagro_physical_counts_v1"
+  ],
+  "forms/03_PROCUREMENT_SUPPLIERS_PURCHASING/GREENAGRO_PROCUREMENT_CUMULATIVE_V1/01_Purchase_Requisition_Approval.html": [
+    "greenagro_purchase_requisitions_v1"
+  ],
+  "forms/03_PROCUREMENT_SUPPLIERS_PURCHASING/GREENAGRO_PROCUREMENT_CUMULATIVE_V1/02_Supplier_RFQ_Quotation_Comparison_Decision.html": [
+    "greenagro_procurement_rfq_v1"
+  ],
+  "forms/03_PROCUREMENT_SUPPLIERS_PURCHASING/GREENAGRO_PROCUREMENT_CUMULATIVE_V1/03_Purchase_Order_Supplier_Commitment.html": [
+    "greenagro_purchase_orders_v1"
+  ],
+  "forms/03_PROCUREMENT_SUPPLIERS_PURCHASING/GREENAGRO_PROCUREMENT_CUMULATIVE_V1/04_Supplier_Master_Performance_Monitoring.html": [
+    "greenagro_supplier_master_v1"
+  ],
+  "forms/03_PROCUREMENT_SUPPLIERS_PURCHASING/GREENAGRO_PROCUREMENT_CUMULATIVE_V1/05_Procurement_Monitoring_Engine_Dashboard.html": [
+    "greenagro_purchase_requisitions_v1"
+  ],
+  "forms/04_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION/GREENAGRO_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION_CUMULATIVE_V1/01_Customer_Master_Commercial_Profile.html": [
+    "greenagro_customer_master_v1"
+  ],
+  "forms/04_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION/GREENAGRO_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION_CUMULATIVE_V1/02_Sales_Order_Pricing_Approval.html": [
+    "greenagro_sales_orders_v1"
+  ],
+  "forms/04_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION/GREENAGRO_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION_CUMULATIVE_V1/03_Depot_Allocation_Dispatch_Delivery.html": [
+    "greenagro_dispatch_delivery_v1"
+  ],
+  "forms/04_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION/GREENAGRO_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION_CUMULATIVE_V1/04_Customer_Return_Complaint_Credit_Request.html": [
+    "greenagro_sales_returns_v1"
+  ],
+  "forms/04_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION/GREENAGRO_SALES_CUSTOMERS_DEPOTS_DISTRIBUTION_CUMULATIVE_V1/05_Sales_Depot_Distribution_Monitoring_Engine.html": [
+    "greenagro_customer_master_v1"
+  ],
+  "forms/05_FINANCE_TREASURY_ACCOUNTING/GREENAGRO_FINANCE_TREASURY_ACCOUNTING_CUMULATIVE_V1/01_Chart_of_Accounts_Financial_Masters.html": [
+    "greenagro_finance_accounts_v1"
+  ],
+  "forms/05_FINANCE_TREASURY_ACCOUNTING/GREENAGRO_FINANCE_TREASURY_ACCOUNTING_CUMULATIVE_V1/02_Supplier_Invoice_Accounts_Payable.html": [
+    "greenagro_accounts_payable_v1"
+  ],
+  "forms/05_FINANCE_TREASURY_ACCOUNTING/GREENAGRO_FINANCE_TREASURY_ACCOUNTING_CUMULATIVE_V1/03_Customer_Invoice_Accounts_Receivable.html": [
+    "greenagro_accounts_receivable_v1"
+  ],
+  "forms/05_FINANCE_TREASURY_ACCOUNTING/GREENAGRO_FINANCE_TREASURY_ACCOUNTING_CUMULATIVE_V1/04_Treasury_Cash_Bank_Receipts_Payments.html": [
+    "greenagro_treasury_transactions_v1"
+  ],
+  "forms/05_FINANCE_TREASURY_ACCOUNTING/GREENAGRO_FINANCE_TREASURY_ACCOUNTING_CUMULATIVE_V1/05_OPEX_CAPEX_Journal_Adjustment_Control.html": [
+    "greenagro_finance_entries_v1"
+  ],
+  "forms/05_FINANCE_TREASURY_ACCOUNTING/GREENAGRO_FINANCE_TREASURY_ACCOUNTING_CUMULATIVE_V1/06_Finance_Management_Reporting_Audit_Engine.html": [
+    "greenagro_accounts_payable_v1"
+  ],
+  "forms/06_HR_WORKFORCE_ADMINISTRATION/GREENAGRO_HR_WORKFORCE_ADMINISTRATION_CUMULATIVE_V1/01_Employee_Master_Employment_Profile.html": [
+    "greenagro_employee_master_v1"
+  ],
+  "forms/06_HR_WORKFORCE_ADMINISTRATION/GREENAGRO_HR_WORKFORCE_ADMINISTRATION_CUMULATIVE_V1/02_Contract_Position_Workforce_Assignment.html": [
+    "greenagro_workforce_assignments_v1"
+  ],
+  "forms/06_HR_WORKFORCE_ADMINISTRATION/GREENAGRO_HR_WORKFORCE_ADMINISTRATION_CUMULATIVE_V1/03_Attendance_Leave_Workforce_Time.html": [
+    "greenagro_attendance_leave_v1"
+  ],
+  "forms/06_HR_WORKFORCE_ADMINISTRATION/GREENAGRO_HR_WORKFORCE_ADMINISTRATION_CUMULATIVE_V1/04_Onboarding_Offboarding_Employee_Lifecycle.html": [
+    "greenagro_employee_lifecycle_v1"
+  ],
+  "forms/06_HR_WORKFORCE_ADMINISTRATION/GREENAGRO_HR_WORKFORCE_ADMINISTRATION_CUMULATIVE_V1/05_Payroll_Input_Finance_Reference.html": [
+    "greenagro_payroll_inputs_v1"
+  ],
+  "forms/06_HR_WORKFORCE_ADMINISTRATION/GREENAGRO_HR_WORKFORCE_ADMINISTRATION_CUMULATIVE_V1/06_HR_Workforce_Monitoring_Audit_Engine.html": [
+    "greenagro_employee_master_v1"
+  ],
+  "forms/07_ORGANIZATION_DUTIES_ACCESS_CONTROL/GREENAGRO_ORGANIZATION_DUTIES_ACCESS_CONTROL_CUMULATIVE_V1/01_Organogram_Departments_Positions.html": [
+    "greenagro_org_positions_v1"
+  ],
+  "forms/07_ORGANIZATION_DUTIES_ACCESS_CONTROL/GREENAGRO_ORGANIZATION_DUTIES_ACCESS_CONTROL_CUMULATIVE_V1/02_Position_Duty_Templates.html": [
+    "greenagro_duty_templates_v1"
+  ],
+  "forms/07_ORGANIZATION_DUTIES_ACCESS_CONTROL/GREENAGRO_ORGANIZATION_DUTIES_ACCESS_CONTROL_CUMULATIVE_V1/03_Employee_Duty_Project_Site_Assignment.html": [
+    "greenagro_employee_duty_assignments_v1"
+  ],
+  "forms/07_ORGANIZATION_DUTIES_ACCESS_CONTROL/GREENAGRO_ORGANIZATION_DUTIES_ACCESS_CONTROL_CUMULATIVE_V1/04_Form_Section_Action_Permissions.html": [
+    "greenagro_access_permissions_v1"
+  ],
+  "forms/07_ORGANIZATION_DUTIES_ACCESS_CONTROL/GREENAGRO_ORGANIZATION_DUTIES_ACCESS_CONTROL_CUMULATIVE_V1/05_Approval_Levels_Segregation_of_Duties.html": [
+    "greenagro_access_control_rules_v1"
+  ],
+  "forms/07_ORGANIZATION_DUTIES_ACCESS_CONTROL/GREENAGRO_ORGANIZATION_DUTIES_ACCESS_CONTROL_CUMULATIVE_V1/06_Access_Governance_Monitoring_Audit_Engine.html": [
+    "greenagro_employee_master_v1"
+  ],
+  "forms/08_QUALITY_ASSURANCE_IMPROVEMENT/GREENAGRO_QUALITY_ASSURANCE_IMPROVEMENT_CUMULATIVE_V1/01_Specifications_Standards_Control.html": [
+    "greenagro_qa_standards_v1"
+  ],
+  "forms/08_QUALITY_ASSURANCE_IMPROVEMENT/GREENAGRO_QUALITY_ASSURANCE_IMPROVEMENT_CUMULATIVE_V1/02_Product_Process_Quality_Inspections.html": [
+    "greenagro_qa_inspections_v1"
+  ],
+  "forms/08_QUALITY_ASSURANCE_IMPROVEMENT/GREENAGRO_QUALITY_ASSURANCE_IMPROVEMENT_CUMULATIVE_V1/03_Nonconformity_CAPA_Improvement.html": [
+    "greenagro_qa_ncr_capa_v1"
+  ],
+  "forms/08_QUALITY_ASSURANCE_IMPROVEMENT/GREENAGRO_QUALITY_ASSURANCE_IMPROVEMENT_CUMULATIVE_V1/04_Supplier_Quality_Control.html": [
+    "greenagro_qa_supplier_quality_v1"
+  ],
+  "forms/08_QUALITY_ASSURANCE_IMPROVEMENT/GREENAGRO_QUALITY_ASSURANCE_IMPROVEMENT_CUMULATIVE_V1/05_QA_Improvement_Monitoring_Audit_Engine.html": [
+    "greenagro_qa_standards_v1"
+  ],
+  "forms/09_MAINTENANCE_ASSETS_CAPEX/GREENAGRO_MAINTENANCE_ASSETS_CAPEX_CUMULATIVE_V1/01_Asset_Register_CAPEX_Acquisition.html": [
+    "greenagro_asset_master_v1"
+  ],
+  "forms/09_MAINTENANCE_ASSETS_CAPEX/GREENAGRO_MAINTENANCE_ASSETS_CAPEX_CUMULATIVE_V1/02_Asset_Assignment_Transfer_Disposal.html": [
+    "greenagro_asset_events_v1"
+  ],
+  "forms/09_MAINTENANCE_ASSETS_CAPEX/GREENAGRO_MAINTENANCE_ASSETS_CAPEX_CUMULATIVE_V1/03_Inspection_Preventive_Maintenance.html": [
+    "greenagro_asset_pm_v1"
+  ],
+  "forms/09_MAINTENANCE_ASSETS_CAPEX/GREENAGRO_MAINTENANCE_ASSETS_CAPEX_CUMULATIVE_V1/04_Breakdown_Repair_Return_to_Service.html": [
+    "greenagro_asset_breakdowns_v1"
+  ],
+  "forms/09_MAINTENANCE_ASSETS_CAPEX/GREENAGRO_MAINTENANCE_ASSETS_CAPEX_CUMULATIVE_V1/05_Depreciation_Finance_Reference.html": [
+    "greenagro_asset_finance_bridge_v1"
+  ],
+  "forms/09_MAINTENANCE_ASSETS_CAPEX/GREENAGRO_MAINTENANCE_ASSETS_CAPEX_CUMULATIVE_V1/06_Asset_Maintenance_Monitoring_Audit_Engine.html": [
+    "greenagro_asset_master_v1"
+  ],
+  "forms/10_PLANNING_TASKS_TARGETS_PERFORMANCE/GREENAGRO_PLANNING_TASKS_TARGETS_PERFORMANCE_CUMULATIVE_V1/01_Company_Department_Project_Plans.html": [
+    "greenagro_plans_v1"
+  ],
+  "forms/10_PLANNING_TASKS_TARGETS_PERFORMANCE/GREENAGRO_PLANNING_TASKS_TARGETS_PERFORMANCE_CUMULATIVE_V1/02_Objectives_KPIs_Targets.html": [
+    "greenagro_objectives_kpis_v1"
+  ],
+  "forms/10_PLANNING_TASKS_TARGETS_PERFORMANCE/GREENAGRO_PLANNING_TASKS_TARGETS_PERFORMANCE_CUMULATIVE_V1/03_Activities_Tasks_Execution.html": [
+    "greenagro_tasks_v1"
+  ],
+  "forms/10_PLANNING_TASKS_TARGETS_PERFORMANCE/GREENAGRO_PLANNING_TASKS_TARGETS_PERFORMANCE_CUMULATIVE_V1/04_Performance_Measurement_Variance_Corrective_Action.html": [
+    "greenagro_performance_measurements_v1"
+  ],
+  "forms/10_PLANNING_TASKS_TARGETS_PERFORMANCE/GREENAGRO_PLANNING_TASKS_TARGETS_PERFORMANCE_CUMULATIVE_V1/05_Planning_Performance_Monitoring_Audit_Engine.html": [
+    "greenagro_plans_v1"
+  ],
+  "forms/11_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL/GREENAGRO_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL_CUMULATIVE_V1/01_Compliance_Legal_Regulatory_Register.html": [
+    "greenagro_compliance_obligations_v1"
+  ],
+  "forms/11_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL/GREENAGRO_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL_CUMULATIVE_V1/02_Hazard_Identification_Risk_Assessment.html": [
+    "greenagro_ohs_risks_v1"
+  ],
+  "forms/11_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL/GREENAGRO_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL_CUMULATIVE_V1/03_Incident_NearMiss_Investigation_Corrective_Action.html": [
+    "greenagro_ohs_incidents_v1"
+  ],
+  "forms/11_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL/GREENAGRO_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL_CUMULATIVE_V1/04_Emergency_Preparedness_Response_Control.html": [
+    "greenagro_emergency_controls_v1"
+  ],
+  "forms/11_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL/GREENAGRO_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL_CUMULATIVE_V1/05_Controlled_Documents_Revisions.html": [
+    "greenagro_controlled_documents_v1"
+  ],
+  "forms/11_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL/GREENAGRO_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL_CUMULATIVE_V1/06_Audits_Findings_Corrective_Actions.html": [
+    "greenagro_compliance_audits_v1"
+  ],
+  "forms/11_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL/GREENAGRO_COMPLIANCE_OHS_RISK_DOCUMENT_CONTROL_CUMULATIVE_V1/07_Compliance_OHS_Risk_Document_Control_Monitoring_Audit_Engine.html": [
+    "greenagro_compliance_obligations_v1"
+  ],
+  "forms/12_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION/GREENAGRO_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION_CUMULATIVE_V1/01_Executive_Management_Review.html": [
+    "greenagro_management_reviews_v1"
+  ],
+  "forms/12_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION/GREENAGRO_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION_CUMULATIVE_V1/02_System_Configuration_Master_Data_Governance.html": [
+    "greenagro_system_master_changes_v1"
+  ],
+  "forms/12_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION/GREENAGRO_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION_CUMULATIVE_V1/03_Workflow_Approval_Notification_Administration.html": [
+    "greenagro_workflow_policies_v1"
+  ],
+  "forms/12_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION/GREENAGRO_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION_CUMULATIVE_V1/04_User_Role_System_Administration.html": [
+    "greenagro_user_admin_actions_v1"
+  ],
+  "forms/12_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION/GREENAGRO_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION_CUMULATIVE_V1/05_Reporting_Executive_Information_Governance.html": [
+    "greenagro_report_catalog_v1"
+  ],
+  "forms/12_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION/GREENAGRO_EXECUTIVE_MANAGEMENT_SYSTEM_ADMINISTRATION_CUMULATIVE_V1/06_Executive_Dashboard_System_Audit_Engine.html": [
+    "greenagro_management_reviews_v1"
+  ]
+}

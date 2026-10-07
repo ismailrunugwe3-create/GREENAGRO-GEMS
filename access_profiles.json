@@ -1,0 +1,85 @@
+{
+  "OWNER": {
+    "label": "CEO / Company Owner",
+    "modules": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12"
+    ],
+    "scope": "ALL",
+    "actions": [
+      "view",
+      "create",
+      "edit",
+      "approve",
+      "admin"
+    ]
+  },
+  "VET": {
+    "label": "Veterinary Officer \u2014 Poultry",
+    "modules": [
+      "01"
+    ],
+    "keywords": [
+      "VETERINARY"
+    ],
+    "scope": "Poultry Operations",
+    "actions": [
+      "view",
+      "create",
+      "edit"
+    ]
+  },
+  "FARM_ATTENDANT_POULTRY": {
+    "label": "Farm Attendant \u2014 Poultry",
+    "modules": [
+      "01"
+    ],
+    "keywords": [
+      "POULTRY_DAILY",
+      "FEEDING_DAILY",
+      "BIOSECURITY",
+      "FLOCK_MOVEMENT",
+      "PRODUCTION_EGG"
+    ],
+    "scope": "Poultry assigned site",
+    "actions": [
+      "view",
+      "create"
+    ]
+  },
+  "FINANCE": {
+    "label": "Finance Officer",
+    "modules": [
+      "05"
+    ],
+    "scope": "Finance",
+    "actions": [
+      "view",
+      "create",
+      "edit"
+    ]
+  },
+  "HR": {
+    "label": "HR Officer",
+    "modules": [
+      "06",
+      "07"
+    ],
+    "scope": "HR & Administration",
+    "actions": [
+      "view",
+      "create",
+      "edit"
+    ]
+  }
+}
