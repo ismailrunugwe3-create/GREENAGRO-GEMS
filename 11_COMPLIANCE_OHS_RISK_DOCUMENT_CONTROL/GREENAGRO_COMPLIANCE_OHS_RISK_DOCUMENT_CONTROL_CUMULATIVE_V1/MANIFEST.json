@@ -1,0 +1,33 @@
+{
+  "module": "11 Compliance, OH&S, Risk & Document Control",
+  "version": "1.0",
+  "manual_forms": 6,
+  "derived_engines": 1,
+  "architecture": "Compliance obligations -> HIRA -> incidents/emergency controls -> controlled documents -> audits/corrective actions -> monitoring/audit",
+  "sod": [
+    "risk assessor != independent risk acceptance reviewer",
+    "incident investigator != effectiveness verifier",
+    "document preparer separated from review/approval",
+    "auditor != auditee",
+    "corrective action owner != independent closure verifier",
+    "Module 07 controls role/site/project/form/action access"
+  ],
+  "cross_module": {
+    "Module08": "link QA NCR/CAPA where cross-system quality action applies",
+    "Module06": "employee/training references",
+    "Module07": "permissions and segregation of duties",
+    "Module09": "asset/maintenance references",
+    "Module10": "optional task/action execution references"
+  },
+  "files": [
+    "02_Hazard_Identification_Risk_Assessment.html",
+    "06_Audits_Findings_Corrective_Actions.html",
+    "01_Compliance_Legal_Regulatory_Register.html",
+    "05_Controlled_Documents_Revisions.html",
+    "07_Compliance_OHS_Risk_Document_Control_Monitoring_Audit_Engine.html",
+    "ARCHITECTURE_VERIFICATION_REPORT.html",
+    "04_Emergency_Preparedness_Response_Control.html",
+    "INDEX.html",
+    "03_Incident_NearMiss_Investigation_Corrective_Action.html"
+  ]
+}
